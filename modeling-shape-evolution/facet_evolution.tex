@@ -225,49 +225,147 @@ this is a highly abstract paper
 \section{Introduction}
 \label{sec:intro}
 
-Facet slopes often mark the surface expression of active extensional faults. Facet slopes are basin-facing hillslopes that are aligned with the surface trace of an extensional fault (Figure~\ref{fig:facets}). In many cases, the dissection of the footwall by transverse valleys creates triangular facets: individual facet slopes that have a triangular shape in planview. 
+Mountain ranges in extensional tectonic settings often display fault scarps adorned with facets: steep, basin-facing hillslopes that follow the surface trace of the bounding fault and mark the transition from footwall to hangingwall (Figure~\ref{fig:facets}). In many cases, dissection of a footwall range by transverse streams creates flights of triangular facets: facet slopes that are flanked by V-shaped transverse valleys, which present a triangular shape when viewed from the adjacent basin (see especially Figures~\ref{fig:facets}a,e,i). In other settings, facets may be trapezoidal in profile, or even compose a more or less continuous surface along a weakly dissected footwall range \citep[e.g.,][]{wallace1978geometry} (Figure~\ref{fig:facets}g,h).
+
+The aim in this paper is to explore the sculpting of facet cross-sectional profiles, using a numerical process-based model as an interpretive tool. We examine the extent to which the model can account for the diversity in facet morphology, and in particular diversity in slope angle, regolith cover, profile shape, and presence or absence of a slope break across the range-bounding fault. We also use the model to frame testable predictions for the relationship between facet morphology, erosion rate, and fault slip rate.
+
+
+
+
+\section{Background}
+
+Facets have intrigued geologists since at least the late 19th century, %when exploration of the western United States revealed the basin and range 
+when early survey expeditions of the American west (and, later, railroad construction) provided access to the spectacular terrain of the Basin and Range physiographic providence. Among the first published remarks and illustrations on facet geomorphology in the western USA were those of \citet{davis1903mountain,davis1909geographical}. Both he and \citet{gilbert1928studies} viewed facets as exhumed fault planes, with only minor modification by erosion. 
+Later workers, however, noted a discrepancy between the dip angle of facets and of the fault planes beneath. Where facets often dip between 20$^\circ$ and 35$^\circ$ \citep{davis1903mountain,davis1909geographical,pack1926new,blackwelder1928recognition,gilluly1928basin,fuller1931geomorphology,anderson1977compound,wallace1978geometry,menges1990soils,petit2009faceted,wilkinson2015slip}, the bedrock fault planes below commonly form angles of 60$^\circ$ to 70$^\circ$ with respect to the horizontal \citep{schneider1925discussion,pack1926new,blackwelder1928recognition,gilluly1928basin,fuller1931geomorphology,wallace1978geometry,wilkinson2015slip}. The difference in dip between a normal fault plane and the facets above it implies that facets, despite their often strikingly planar form, are erosionally modified features \citep{pack1926new,gilluly1928basin}. \citet{gilluly1928basin}, in his work on the Oquirrh Range (Utah, USA), pointed out an interesting implication of this erosional modification: ``as the dip of the fault averages more than 60 degrees along this part of the range front, a wedge having an apical angle of 30 to 40 degrees has evidently been removed from each facet.'' In other words, because the tip of a facet gets exposed to erosion earlier than the base, it undergoes more cumulative erosion. In this sense, the tip of a facet may be considered ``geomorphically older'' than the base \citep{gilbert1928studies,wallace1978geometry,menges1990soils}.
+
+An unusually well-documented example of the contrast between fault plane and facet morphology comes from a study of the Campo Felice fault in the Italian central Apennines by \citet{wilkinson2015slip}. Detailed maps of the Campo Felice fault plane obtained from terrestrial laser scans of the bedrock fault scarp, together with ground-penetrating radar images of the fault plane in the subsurface, revealed the fault dip to be 57$\pm 4^\circ$, whereas the facet surface above the exposed fault plane dips at 40$\pm 5^\circ$ and the debris below the fault trace dips at $36\pm 3^\circ$. Along the Campo Felice, therefore, Gilully's ``removed wedge'' would have an apical angle of about 17$^\circ$.
+
+Facets show a wide diversity in morphology. Although the dip angles of many facets range between 20$^\circ$ and 35$^\circ$, facets have been reported to have dips as low as several degrees \citep[e.g.,][]{menges1990soils,struble2019mountain} or as high as $\ge40^\circ$ \citep[e.g.,][]{wilkinson2015slip,struble2019mountain}. Their apices may vary in height from tens to hundreds of meters. Some facets are more or less continuously mantled in soil, as for example those along a portion of the Sangre de Cristo Range in New Mexico, USA studied by \citet{menges1990soils}, as well as on some facets along the eastern margin of the American Basin and Range (Figure~\ref{fig:facets}d,f,i). Others, including facets developed on carbonate rocks in the Italian central Apennines, are rocky, with a shallow, discontinuous colluvium \citep{tucker2011geomorphic} (Figure~\ref{fig:facets}g,h). The longitudinal profiles of facets may be planar or convex-upward. Some faceted mountain fronts display a clear break in slope between the base of the facets and an adjacent colluvial apron (Figure~\ref{fig:facets}g). For example, hangingwall colluvial slopes surveyed by \citet{bubeck2015tectonic} in the Apennines showed slope angles of 20--25$^\circ$. Along other mountain fronts, the basal colluvium dips at about the same angle as the facet above, with the contact between the two sometimes marked by a fault scarp (Figure~\ref{fig:facets}h), and sometimes obscure (Figure~\ref{fig:facets}i).
+
+The diversity in facet morphology raises the question of whether facets may encode useful information about tectonic processes, as several studies have suggested. \citet{hamblin1976patterns} and \citet{anderson1977compound} identified flights of facet-like surface the Wasatch Front (Utah, USA) separated by bench-like spurs, and interpreted these as reflecting alternating episodes of rapid slip and tectonic quiescence. \citet{menges1990soils} noted that facets along the southern Sangre de Cristo Range tend to be steeper and taller toward the middle of fault segments, as opposed to zones of overlap between adjacent segments. \citet{depolo2000estimating} compiled morphologic data on 45 faults with independent slip-rate estimates in the arid to semi-arid environment of the Great Basin, USA. Faults with a slip rate in excess of a few 10s of microns per year were associated with facets, and among these, \citet{depolo2000estimating} demonstrated a correlation between slip rate and facet height. In a study of facets along four segments of the Wasatch fault system, \citet{zuchiewicz2000geometry} noted multiple potential controls on facet geometry, including lithology, but considered slip rate to be the primary control. In laboratory experiments by \citet{strak2011interaction}, facet angle increased with slip rate up to a limiting threshold angle. By contrast, \citet{densmore1998landsliding} and \citet{ellis1999development} suggested on the basis of numerical model experiments that facet erosion might be controlled chiefly by bedrock landsliding, such that facet angle represents a threshold angle for stability that does not correlate with slip rate.
+
+If facets take shape through a collaboration between tectonics and erosion, then it stands to reason that their morphology might also encode useful information about rates of geomorphic processes. \citet{menges1990soils} noted, for example, that the degree of soil development generally increases upslope on facets along the southern Sangre de Cristo Range. Using a simple geometric model, \citet{tucker2011geomorphic} noted that the difference in dip angle between a facet and its basal fault---in other words, the apical angle of Gilluly's wedge of missing rock---could be related quantitatively to the ratio of the rates of fault slip and facet erosion, according to:
+\begin{equation}
+\beta = \alpha - \theta = E / V,
+\label{eq:predangle}
+\end{equation}
+where $\alpha$ is the fault dip angle, $\theta$ is the facet dip angle, $E$ is the slope-normal facet erosion rate, and $V$ is the fault slip rate. The concept is illustrated in Figure~\ref{fig:facetschem}. One implication of the geometry illustrated in Figure~\ref{fig:facetschem} is that if one knew the fault slip rate and the fault dip, one could estimate the erosion rate (averaged over the age of the facet). Conversely, independent knowledge of the erosion rate would allow estimation of the slip rate.
+
+The geometric view of facets as surfaces that erode as they emerge from below ground leads to the question of what factors determine the erosion rate on a normal-fault facet---and this in turn raises the questions of what are the controlling processes. \citet{wallace1978geometry} hypothesized that fault scarps created by tectonic offset should relax relatively quickly from the initial fault dip to a more stable angle of 30 to 37$^\circ$, and thereafter lay back much more slowly. \citet{densmore1998landsliding} and \citet{ellis1999development} proposed, on the basis of numerical model experiments, that many facets form by bedrock landsliding, and that the facet surfaces essentially represent failure planes. \citet{petit2009faceted} questioned this interpretation, in part because of the scarcity of features such as head scarps and debris lobes that one would expect to be associated with bedrock landsliding. Our own observations of facets in the Italian Apennines and the Wasatch fault system, USA, also lead us to support the view of \citet{petit2009faceted} that facets commonly undergo progressive weathering and erosion. \citet{menges1990soils} suggested that facets might be effectively transport-limited, yet the fact that some facets have extensive bedrock outcrops suggests that this is not always the case. Whereas \citet{menges1990soils} noted some evidence for slope wash, \citet{gilbert1928studies} argued that ``rains accomplish little in the way of erosion... [due to] absorption and retardation by porous talus and in conditions unfavorable to concentration of flow.'' Finally, variations in facet morphology and scale with lithology implies that facet materials vary in their susceptibility to weathering and transport \citep{menges1990soils,zuchiewicz2000geometry}. 
+
+Numerical models of extensional mountain range evolution can reproduce classic landforms such as facets, spurs, and wineglass-shaped valleys, but models differ in their representation of the governing processes. \citet{densmore1998landsliding} and \citet{ellis1999development} introduced a model that included rock weathering, regolith creep, and bedrock landsliding, and explored a part of the parameter space in which facet erosion occurred primarily by landsliding. A model developed by \citet{petit2009faceted} represented hillslope erosion using a diffusion formulation, with a higher transport coefficient applied to slopes steeper than $40^\circ$. In their study of facets in the Great Basin, \citet{depolo2000estimating} showed that the observed relationship between slip rate and facet angle was consistent with a nonlinear diffusion model. Similarly, analysis of facets along the Wasatch fault system by \citet{struble2019mountain} suggested a nonlinear relationship between erosion rate and facet angle. The planform landscape evolution model studied by \citet{petit2009faceted} showed little correlation between facet slope and fault dip angle, whereas the geometrical analysis of \citet{tucker2011geomorphic} implies that fault dip should be a primary control. In summary, the community has developed several published models of extensional footwall evolution, but the implications of these models for facet evolution differ depending on the assumed process rules. To make further progress, we need models that can account for the observed diversity in facet morphology, including variations in slope angle, regolith cover, and shape, and that make field-testable predictions about the relationship between morphology, erosion rate, and slip rate.
+
+
+\section{Approach and Scope}
+
+We view normal-fault facets as unique natural experiments: slopes that are born as steep, seismo-tectonic fault scarps, and undergo progressive weathering and erosion as they are translated upward and away from the fault trace. We use a process-oriented cellular automaton model of facet cross-section evolution as an interpretive tool with which to address the following questions: can the model that combines rock weathering with disturbance-driven soil creep account for the observed range in facet angle, regolith cover fraction, shape, and colluvial wedge angle? If so, what are the primary controlling factors? Does the model imply a systematic relationship between facet angle and erosion rate, and if so what does that relationship look like? The answer to this last question is especially important, because it sets up a testable prediction: facet angle is easy to measure, and erosion rate can in principle be obtained either through the geometric method summarized in Figure~\ref{fig:facetschem} (if fault slip rate is known), or by techniques such as cosmogenic nuclide analysis.
+
+Our focus is on the cross-sectional geometry of facets, rather than their full three-dimensional (3D) form; in other words, our interest is not in explaining why facets are often triangular (which seems to be well understood), but rather in understanding what sets their gradient, shape, and regolith cover. That said, the influence of facet length---the distance between the fault trace and the facet's upper edge at a particular cross-sectional position---is considered by comparing models with varying domain length, as described below. We do not consider controls on the height of the facet edge, as this clearly depends in part on the spacing between transverse channels, and on the topography of valley side slopes along them.
+
+A cellular automaton model might seem like an odd choice for modeling the evolution of an idealized hillslope cross section. After all, most models of hillslope cross-sectional morphology are built on differential equations, which are sometimes viewed as ``the keys to geomorphic nirvana'' \citep{bras2003six}. In this case, however, it is the only model we know of that can account for a both smooth, soil-mantled slopes, and steep, irregular, rocky ones---and the transition between these forms \citep{tucker2018lattice}. Moreover, the cellular framework allows a fully two-dimensional representation (as opposed to the more common profile representation, in which surface elevation is a function of one independent spatial dimension), and it provides a natural way to treat combined vertical and horizontal tectonic offset. Finally, the cellular approach described below (and in greater detail by \citet{tucker2018lattice}) honors the occurrence of a patchy or otherwise incomplete regolith cover, as is observed on some facet surfaces.
+
+Section so-and-so does X, then Y, etc...
+
+
+\section{Cellular Hillslope Evolution Model}
+
+The facet profile evolution model builds on ``Grain Hill'' cellular automaton framework \citep{tucker2018lattice}, with the addition of a 60$^\circ$ dipping normal fault. Advantages of the Grain Hill model include the ability to reproduce a range of hillslope forms, from soil mantled to rocky; representation of short-range and long-range (``nonlocal'') sediment motion, depending on topography; direct treatment of stochastic disturbance; and ability to relate model parameters to the more commonly used transport and weathering rate coefficients. The model domain consists of a lattice of hexagonal cells that represents a vertical cross-section through a hypothetical facet and its adjacent colluvial wedge (Figure~\ref{fig:domainschematic}). The lower left corner of the model represents a longitudinal stream that removes any debris delivered to it, and whose elevation is fixed to the hangingwall block, which serves as the reference frame for the model. The right side of the model represents the upper edge of the facet at that particular cross-section; increasing or decreasing the width of the domain equates to moving the cross section toward or away from the facet tip (Figure~\ref{fig:domainschematic}).
+
+Each hexagonal model cell represents one of three types of material: air, rock, or regolith (Figure~\ref{fig:cellstates}). Regolith cells may be stationary, or may be in a state of motion in one of the six lattice directions. Collectively, these materials and motion directions are represented by assigning one of nine integer state codes to each cell in the domain. Stochastic, pairwise transitions represent the processes of rock weathering, regolith disturbance, and ensuing regolith motion \citep{tucker2016celllab,tucker2018lattice}. For example, the rock cell in rock-air pair has a user-specified probability per unit time of transitioning to a regolith cell, representing weathering. Instead of clicking through a series of time steps of fixed duration, the model iterates over a sequence of these stochastic transitions, in which one or both cells in an adjacent pair changes state. The algorithm works by scheduling each potential transition event at a randomly generated future time, using an exponential probability distribution function of inter-event waiting times. The program then iterates in chronological order through these scheduled events. As the domain evolves, new transitions are scheduled, and some previously scheduled ones are invalidated. \citet{tucker2016celllab} provide further details on the continuous-time stochastic framework and the algorithms that implement it.
+
+\citet{tucker2018lattice} present the rule set for the Grain Hill model. Here, we briefly summarize these rules, and describe two additions to the version they present: the implementation of periodic slip on a $60^\circ$ dipping normal-fault, and the addition of a rule that represents dissolution of bedrock.
+
+To represent normal-fault slip, a $60^\circ$-dipping fault crosses the grid lattice at a user-specified location (Figure~\ref{fig:domainschematic}, bottom). Cells in the footwall block are shifted up and to the right on a 60$^\circ$ angle, at a distance of $\sqrt{3}$ lattice units per time interval $\tau$. The slip rate is therefore $V = \sqrt{3}\delta \tau$, where $\delta$ [L] is the width of a grid cell.
+
+Production of moveable regolith from bedrock is represented by a transition from a rock-air pair to a regolith-air pair (Figure~\ref{fig:cellstates}a,b). The rate constant $w$ [1/T] represents the average transition frequency. Given a cell width of $\delta$, the expected bare-bedrock weathering rate is $2\delta w$ (the factor of two reflects the fact that for a planar surface, the hex lattice geometry exposes an average of two faces per cell).
+
+In order to explore the case of fully weathering-limited slopes, we introduce a second weathering rule to represent dissolution. When this rule is invoked, rock-air cell pairs transition to air-air pairs---representing rock dissolution---with an average rate $s$ [1/T]. The expected bare rock dissolution rate [L/T] is therefore $\delta s$.
+
+We assume that regolith transport can occur by two means: (1) displacement by a disturbance event and subsequent motion, or (2) spontaneous gravitational failure, when the local angle of repose is exceeded. The model's disturbance rule represents the action of processes like animal burrowing, frost heave, tree throw, and other mechanisms that tend to displace regolith outward from the surface. The disturbance transition rule applies to locations where a resting regolith cell lies adjacent to an air cell. When the transition occurs, regolith and air cell trade places, and the regolith state switches from resting to moving in the direction from which disturbance originated (Figure~\ref{fig:cellstates}b,c). The disturbance rate parameter, $d$ [1/T], represents the average disturbance frequency, and functionally equates to the disturbance frequency parameter $N_a$ in the probabilistic theory of soil creep developed by \citet{furbish2009statistical}. \citet{tucker2018lattice} show that for relatively gentle slopes, the disturbance rate relates directly to the commonly used soil transport efficiency factor (``hillslope diffusivity''), $D_s$, according to
+\begin{equation}
+d = \frac{D_s}{60 \delta^2}.
+\end{equation}
+For regolith-mantled slopes steeper than about 15$^\circ$, the effective transport efficiency increases progressively with slope angle, diverging at a 30$^\circ$ effective angle of repose \citep[][, their Figure 10]{tucker2018lattice}.
+
+Moving particles follow a set of transition rules that mimic the kinematics of inelastic grain motion in a gravitational field. Although these motion and collision rules are necessarily heuristic, they effectively capture the settling motion of disturbed particles \citep{furbish2009statistical}. The motion, gravitational, and inelastic collision rules are illustrated in Figure~\ref{fig:cellstates}, and described in greater detail by \citet{tucker2016celllab} and \citet{tucker2018lattice}. One rule to note in particular: a regolith cell that lies above and adjacent to an air cell can transition to a moving state, with a high transition rate parameter. Because of the lattice geometry, this rule imposes an effective 30$^\circ$ angle of repose.
+
+Sensitivity experiments indicate that the exact nature of the motion and settling rules is not especially important. What matters more is that there exists a time-scale separation between disturbance (with intervals on the order of years) and settling (time scale on the order of seconds or less). The rule set described above can capture a range of slope forms, including regolith-mantled and convex-upward forms, planar angle-of-repose, and partially mantled ``rocky'' slopes \citep{tucker2018lattice}. 
+
+This generality makes the model an appropriate one for exploring bedrock fault scarps and facets, which emerge during earthquakes as steep, rock slopes, and can subsequently evolve into partially or fully regolith mantled erosional slopes. In the following section, we present model experiments that address three related questions:
+\begin{enumerate}
+\item What conditions are both necessary and sufficient to produce planar facet profiles with a thin  mantle (continuous or discontinuous) of regolith?
+\item Can the model account for the observed range in facet slope angle, cross-sectional shape, soil cover, and facet-to-colluvial-wedge transition?
+\item What is the predicted relationship between facet gradient and erosion rate?
+\end{enumerate}
+We explore these questions with a systematic parameter exploration, beginning with the simple case of a purely weathering-limited slope.
+
+
+\section{Results}
+
+\subsection{Weathering Limited Case: Facet Dissolution}
+
+We start with a simple test: if a facet erodes at a steady, uniform rate, its evolution should follow the geometry illustrated in Figure~\ref{fig:facetschem}. The profile should be linear, and the dip angle should relate to the rates of erosion and slip according to equation~(\ref{eq:predangle}). To perform this test, we run the model with dissolution activated, and without any rock-to-regolith conversion. The expected average rate of erosion by dissolution is $E = 2\delta s$. To simplify the analysis, we define a dimensionless dissolution efficiency as
+\begin{equation}
+S' = \frac{2\delta s}{V}.
+\label{eq:nddissefficiency}
+\end{equation}
+The expected facet dip angle is
+\begin{equation}
+\theta = \alpha - S',
+\label{eq:dissangle}
+\end{equation}
+where $\theta$ and $\alpha$ are both in radians. 
+
+[ADD PREDICTED DIP ANGLES TO THE 4 DISSOLUTION PLOTS]
+
+
+[start with section to demonstrate that tests ability of model in purely weathering-limited configuration to reproduce geometric model of Tucker 2011; add to the figure a couple of runs demonstrating change in width]
 
 
 
 
 
 
-Outline for potential short-ish paper on facet morphology:
 
 
-I. Introduction
-
-Morphology of normal-fault facets poses some interesting questions:
-- variations in facet dip angle (from less than 10 degrees to over 30 degrees)
-- despite planar morphology, dip angle of facet is almost always less than the dip angle of the fault
-- some facets are mantled by a mostly continuous mantle of soil, whereas others are rocky and host discontinuous, patchy soil
-- in some cases, the mapped fault trace lies at the base of the facet, where in others, the fault trace occurs in mid-slope, coinciding with a transition from rock to colluvium but without a clear break in slope
-
-Literature review: facets have intrigued geoscientists both because of their striking morphology, and because of what they can reveal about tectonic motion and earthquake hazards. Various refs: Carole Petit, McCalpin, Tucker et al., 2011, etc., etc.
-
-Need a process-based model that can account for the basic morphology of facets, and the key variations in morphology that are observed.
 
 
-II. Normal-Fault Facets in the Italian Central Apennines and the central western United States
+%Outline 
+%
+%
+%I. Introduction
+%
+%Morphology of normal-fault facets poses some interesting questions:
+%- variations in facet dip angle (from less than 10 degrees to over 30 degrees)
+%- despite planar morphology, dip angle of facet is almost always less than the dip angle of the fault
+%- some facets are mantled by a mostly continuous mantle of soil, whereas others are rocky and host discontinuous, patchy soil
+%- in some cases, the mapped fault trace lies at the base of the facet, where in others, the fault trace occurs in mid-slope, coinciding with a transition from rock to colluvium but without a clear break in slope
+%
+%Literature review: facets have intrigued geoscientists both because of their striking morphology, and because of what they can reveal about tectonic motion and earthquake hazards. Various refs: Carole Petit, McCalpin, Tucker et al., 2011, etc., etc.
+%
+%Need a process-based model that can account for the basic morphology of facets, and the key variations in morphology that are observed.
+%
+%
+%II. Normal-Fault Facets in the Italian Central Apennines and the central western United States
+%
+%Show photos, lidar images, for facets in Wasatch and north, and in Italy
+%
+%
+%III. Cellular Model of Facet Evolution
+%
+%A. Why a Cellular Model?
+%
+%motivation for using this kind of model, citing Grain Hill paper and noting that process params can be pinned
+%
+%B. Model Description
+%describe model
 
-Show photos, lidar images, for facets in Wasatch and north, and in Italy
-
-
-III. Cellular Model of Facet Evolution
-
-A. Why a Cellular Model?
-
-motivation for using this kind of model, citing Grain Hill paper and noting that process params can be pinned
-
-B. Model Description
-describe model
-
-C. Experimental Design
-
-goal is to determine:
-- what are the necessary and sufficient conditions to reproduce the common morphology of a facet: planar with thin soil cover?
-- can the model account for observed range in facet morphology and soil cover?
-- what are the key controls on slope gradient, profile shape, and regolith cover fraction and thickness?
+%C. Experimental Design
+%
+%goal is to determine:
+%- what are the necessary and sufficient conditions to reproduce the common morphology of a facet: planar with thin soil cover?
+%- can the model account for observed range in facet morphology and soil cover?
+%- what are the key controls on slope gradient, profile shape, and regolith cover fraction and thickness?
 
 
 IV. Results
@@ -287,6 +385,8 @@ C. (optional) what if rock or soil can dissolve, a la Italian carbonates? (disso
 D. (optional) baselevel effects - what happens when either you have a basal stream cutting down or a hangingwall valley aggrading? This would require having a modification that would add or remove rock cells along the left edge
 
 E. what sets the effective E vs S relation? refer back to T et al., 2011, noting restrictive assumption of slope-independent erosion rate
+
+F. (optional) how could one mimic the effective rule in a differential equation world? Try out something like the depth-dependent Taylor model.
 
 
 V. Discussion
@@ -353,11 +453,6 @@ o illustration with time-varying w and/or d
 \label{eq:angdif}
 \end{equation}
 
-\begin{equation}
-S' = \frac{2\delta s}{V}
-\label{eq:nddissefficiency}
-\end{equation}
-
 
 
 
@@ -385,15 +480,21 @@ S' = \frac{2\delta s}{V}
 \end{figure}
 
 \begin{figure}[ht!]
-\centerline{\includegraphics[scale=0.7]{Figures/cell_states_and_transitions.pdf}}
-\caption{Illustration of cell states and pairwise transitions in the Grain Facet model. Each cell assigned an integer from 0 to 8 that represents its state (0 is fluid, states 1--6 represent the six directions of motion, state 7 is resting sediment, and state 8 is rock). (Figure modified from \citet{tucker2018lattice}).}
-\label{fig:cellstates}
+\centerline{\includegraphics{Figures/facet_schematic.pdf}}
+\caption{Conceptual illustration showing how fault slip rate, $V$, fault dip angle, $\alpha$, and facet erosion rate, $E$, combine to set the dip angle of a facet profile. (Modified from \citet{tucker2011geomorphic}.)}
+\label{fig:facetschem}
 \end{figure}
 
 \begin{figure}[ht!]
-\centerline{\includegraphics{Figures/facet_schematic.pdf}}
-\caption{}
-\label{fig:facetschem}
+\centerline{\includegraphics{Figures/facet_plan_and_profile.pdf}}
+\caption{Schematic illustration of model domain, which represents vertical cross-section through an idealized facet and its adjacent colluvial wedge (a--a'). Right side of domain represents the upper edge of facet, and left side represents a longitudinal stream in the hangingwall that removes any debris delivered to it. Changing the position of the cross section (for example, from a--a' to b--b'), and therefore its length, is accomplished by changing the width of the model domain.}
+\label{fig:domainschematic}
+\end{figure}
+
+\begin{figure}[ht!]
+\centerline{\includegraphics[scale=0.7]{Figures/cell_states_and_transitions.pdf}}
+\caption{Illustration of cell states and pairwise transitions in the Grain Facet model. Each cell assigned an integer from 0 to 8 that represents its state (0 is fluid, states 1--6 represent the six directions of motion, state 7 is resting sediment, and state 8 is rock). (Figure modified from \citet{tucker2018lattice}).}
+\label{fig:cellstates}
 \end{figure}
 
 \begin{figure}[ht!]
@@ -491,7 +592,7 @@ S' = \frac{2\delta s}{V}
 %  ACKNOWLEDGMENTS
 
 \acknowledgments
-thanks
+NSF normal faults, landlab, csdms, ...
 
 
 
@@ -532,11 +633,128 @@ thanks
   \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
   \urlstyle{rm}\Url}\fi
 
+\bibitem[{\textit{Anderson}(1977)}]{anderson1977compound}
+Anderson, T.~C. (1977), {Compound faceted spurs and recurrent movement in the
+  Wasatch Fault zone, north central Utah}, Ph.D. thesis, Brigham Young
+  University.
+
+\bibitem[{\textit{Blackwelder}(1928)}]{blackwelder1928recognition}
+Blackwelder, E. (1928), The recognition of fault scarps, \textit{The Journal of
+  Geology}, \textit{36}(4), 289--311.
+
 \bibitem[{\textit{Boulton and Whittaker}(2009)}]{boulton2009quantifying}
 Boulton, S., and A.~Whittaker (2009), Quantifying the slip rates, spatial
   distribution and evolution of active normal faults from geomorphic analysis:
   Field examples from an oblique-extensional graben, southern turkey,
   \textit{Geomorphology}, \textit{104}(3-4), 299--316.
+
+\bibitem[{\textit{Bras et~al.}(2003)\textit{Bras, Tucker, and
+  Teles}}]{bras2003six}
+Bras, R., G.~Tucker, and V.~Teles (2003), {Six myths about mathematical
+  modeling in geomorphology}, in \textit{Prediction in Geomorphology}, edited
+  by P.~Wilcock and R.~Iverson, pp. 63--79, American Geophysical Union.
+
+\bibitem[{\textit{Bubeck et~al.}(2015)\textit{Bubeck, Wilkinson, Roberts,
+  Cowie, McCaffrey, Phillips, and Sammonds}}]{bubeck2015tectonic}
+Bubeck, A., M.~Wilkinson, G.~P. Roberts, P.~Cowie, K.~McCaffrey, R.~Phillips,
+  and P.~Sammonds (2015), The tectonic geomorphology of bedrock scarps on
+  active normal faults in the italian apennines mapped using combined ground
+  penetrating radar and terrestrial laser scanning, \textit{Geomorphology},
+  \textit{237}, 38--51.
+
+\bibitem[{\textit{Davis}(1903)}]{davis1903mountain}
+Davis, W.~M. (1903), The mountain ranges of the great basin, \textit{Harvard
+  University Museum of Comparative Zoology Bulletin}, \textit{40}(3), 129--177.
+
+\bibitem[{\textit{Davis}(1909)}]{davis1909geographical}
+Davis, W.~M. (1909), \textit{Geographical Essays}, Ginn.
+
+\bibitem[{\textit{Densmore et~al.}(1998)\textit{Densmore, Ellis, and
+  Anderson}}]{densmore1998landsliding}
+Densmore, A.~L., M.~A. Ellis, and R.~S. Anderson (1998), Landsliding and the
+  evolution of normal-fault-bounded mountains, \textit{Journal of Geophysical
+  Research}, \textit{103}, 15,203--15,219.
+
+\bibitem[{\textit{DePolo and Anderson}(2000)}]{depolo2000estimating}
+DePolo, C., and J.~Anderson (2000), Estimating the slip rates of normal faults
+  in the great basin, usa, \textit{Basin Research}, \textit{12}(3-4), 227--240.
+
+\bibitem[{\textit{Ellis et~al.}(1999)\textit{Ellis, Densmore, and
+  Anderson}}]{ellis1999development}
+Ellis, M., A.~Densmore, and R.~Anderson (1999), Development of mountainous
+  topography in the basin ranges, usa, \textit{Basin Research}, \textit{11}(1),
+  21--42.
+
+\bibitem[{\textit{Fuller}(1931)}]{fuller1931geomorphology}
+Fuller, R.~E. (1931), {The geomorphology and volcanic sequence of Steens
+  Mountain in southeastern Oregon}, \textit{University of Washington
+  Publications in Geology}, \textit{3}(1).
+
+\bibitem[{\textit{Furbish et~al.}(2009)\textit{Furbish, Haff, Dietrich, and
+  Heimsath}}]{furbish2009statistical}
+Furbish, D., P.~Haff, W.~Dietrich, and A.~Heimsath (2009), Statistical
+  description of slope-dependent soil transport and the diffusion-like
+  coefficient, \textit{J. Geophys. Res}, \textit{114}, F00A05.
+
+\bibitem[{\textit{Gilbert}(1928)}]{gilbert1928studies}
+Gilbert, G. (1928), \textit{Studies of basin-range structure}, \textit{U.~S.\
+  Geological Survey Professional Paper}, vol. 153, United States Government
+  Printing Office.
+
+\bibitem[{\textit{Gilluly}(1928)}]{gilluly1928basin}
+Gilluly, J. (1928), {Basin range faulting along the Oquirrh Range, Utah},
+  \textit{Bulletin of the Geological Society of America}, \textit{39}(4),
+  1103--1130.
+
+\bibitem[{\textit{Hamblin}(1976)}]{hamblin1976patterns}
+Hamblin, W. (1976), Patterns of displacement along the wasatch fault,
+  \textit{Geology}, \textit{4}(10), 619.
+
+\bibitem[{\textit{Menges}(1990)}]{menges1990soils}
+Menges, C. (1990), {Soils and geomorphic evolution of bedrock facets on a
+  tectonically active mountain front, western Sangre de Cristo Mountains, New
+  Mexico}, \textit{Geomorphology}, \textit{3}(3-4), 301--332.
+
+\bibitem[{\textit{Pack}(1926)}]{pack1926new}
+Pack, F.~J. (1926), {New discoveries relating to the Wasatch fault},
+  \textit{American Journal of Science}, \textit{11}(65), 399--410.
+
+\bibitem[{\textit{Petit et~al.}({2009})\textit{Petit, Gunnell,
+  Gonga-Saholiariliva, Meyer, and Seguinot}}]{petit2009faceted}
+Petit, C., Y.~Gunnell, N.~Gonga-Saholiariliva, B.~Meyer, and J.~Seguinot
+  ({2009}), {Faceted spurs at normal fault scarps: Insights from numerical
+  modeling}, \textit{Journal of Geophysical Research---Solid Earth},
+  \textit{{114}}, \doi{{10.1029/2008JB005955}}.
+
+\bibitem[{\textit{Schneider}(1925)}]{schneider1925discussion}
+Schneider, H. (1925), {A discussion of certain geologic features of the Wasatch
+  Mountains}, \textit{The Journal of Geology}, \textit{33}(1), 28--48.
+
+\bibitem[{\textit{Strak et~al.}(2011)\textit{Strak, Dominguez, Petit, Meyer,
+  and Loget}}]{strak2011interaction}
+Strak, V., S.~Dominguez, C.~Petit, B.~Meyer, and N.~Loget (2011), Interaction
+  between normal fault slip and erosion on relief evolution: Insights from
+  experimental modelling, \textit{Tectonophysics}, \textit{513}(1-4), 1--19.
+
+\bibitem[{\textit{Struble et~al.}(in review)\textit{Struble, McCoy, Hobley,
+  Tucker, and Gregory}}]{struble2019mountain}
+Struble, W.~T., S.~W. McCoy, D.~E.~J. Hobley, G.~E. Tucker, and L.~C. Gregory
+  (in review), {Mountain-Front Facet Gradient Encodes Long-Term Slip Rate Along
+  the Wasatch Normal Fault, USA}, \textit{TBD}.
+
+\bibitem[{\textit{Tucker et~al.}(2011)\textit{Tucker, McCoy, Whittaker,
+  Roberts, Lancaster, and Phillips}}]{tucker2011geomorphic}
+Tucker, G., S.~McCoy, A.~Whittaker, G.~Roberts, S.~Lancaster, and R.~Phillips
+  (2011), Geomorphic significance of postglacial bedrock scarps on normal-fault
+  footwalls, \textit{Journal of Geophysical Research}, \textit{116}(F1),
+  F01,022.
+
+\bibitem[{\textit{Tucker et~al.}(2016)\textit{Tucker, Hobley, Hutton,
+  Gasparini, Istanbulluoglu, Adams, and Nudurupati}}]{tucker2016celllab}
+Tucker, G.~E., D.~E. Hobley, E.~Hutton, N.~M. Gasparini, E.~Istanbulluoglu,
+  J.~M. Adams, and S.~S. Nudurupati (2016), Celllab-cts 2015: continuous-time
+  stochastic cellular automaton modeling using landlab, \textit{Geoscientific
+  Model Development}, \textit{9}(2), 823--839.
 
 \bibitem[{\textit{Tucker et~al.}(2018)\textit{Tucker, McCoy, and
   Hobley}}]{tucker2018lattice}
@@ -544,6 +762,25 @@ Tucker, G.~E., S.~W. McCoy, and D.~E. Hobley (2018), A lattice grain model of
   hillslope evolution, \textit{Earth Surface Dynamics}, \textit{6}(3),
   563--582.
 
+\bibitem[{\textit{Wallace}(1978)}]{wallace1978geometry}
+Wallace, R. (1978), {Geometry and rates of change of fault-generated range
+  fronts, north-central Nevada}, \textit{Journal of Research of the U.S.\
+  Geological Survey}, \textit{6}(5), 637--650.
+
+\bibitem[{\textit{Wilkinson et~al.}(2015)\textit{Wilkinson, Roberts, McCaffrey,
+  Cowie, Walker, Papanikolaou, Phillips, Michetti, Vittori, Gregory
+  et~al.}}]{wilkinson2015slip}
+Wilkinson, M., G.~P. Roberts, K.~McCaffrey, P.~A. Cowie, J.~P.~F. Walker,
+  I.~Papanikolaou, R.~J. Phillips, A.~M. Michetti, E.~Vittori, L.~Gregory,
+  et~al. (2015), {Slip distributions on active normal faults measured from
+  LiDAR and field mapping of geomorphic offsets: an example from L'Aquila,
+  Italy, and implications for modelling seismic moment release},
+  \textit{Geomorphology}, \textit{237}, 130--141.
+
+\bibitem[{\textit{Zuchiewicz and McCalpin}(2000)}]{zuchiewicz2000geometry}
+Zuchiewicz, W.~A., and J.~P. McCalpin (2000), Geometry of faceted spurs on an
+  active normal fault: case study of the central wasatch fault, utah, usa, in
+  \textit{Annales Societatis Geologorum Poloniae}, vol.~70, pp. 231--249.
 
 \end{thebibliography}
 
@@ -567,6 +804,678 @@ Tucker, G.~E., S.~W. McCoy, and D.~E. Hobley (2018), A lattice grain model of
 %%%
 %\listofchanges
 %%%
+
+
+%the range-bounding faults themselves---observed in quarries or along bedrock tectonic scarps---
+
+%, commonly in the range of , and the dip of the fault planes beneath, which 
+
+
+%G.K.~Gilbert described triangular facets XXX. Their generally planar character, combined with their occurrence at or near the range-bounding fault, conveys the impression that they represent uplifted and exhumed fault planes. Commonly, however, facet slopes dip much more gently than the expected $\sim 60^\circ$ dip of a normal fault, implying erosional modification of the original fault plane.
+
+
+%KEY IDEAS LINKED TO PAPERS:
+
+%o Davis (1903, 1909) viewed facets as lightly modified exhumed fault planes, showing approximately the same dip as the fault itself. He reached this conclusion via the perception that facets along the WF have relatively little colluvium at their bases, even though there's no obvious means to remove colluvium. Gilbert (1928, but writing earlier) agreed: ``"the dip of the fault corresponds so nearly with the angle of rest that adjustment to stability involves little or no wasting."
+
+
+%o The dip of facets is commonly in the range of 20--40o
+%
+%- Davis (1903, 1909): 32--40
+%
+%- Pack (1926) seldom more than 30
+%
+%- Blackwelder (1928) ``generally between 20 and 30 degrees, and rarely so much as 32''
+%
+%- Gilluly (1928) Lakes of Killarney fault 21--30o; Great Basin generally 25--35o; Genoa Peak, NV (quoting Lawson) 24o; Plum Ridge, OR (citing Gilbert) 34; Toyabe, NV, 20--35o
+%
+%- Fuller (1931) Steens is steep, but elsewhere in Great Basin usually about 30
+%
+%- Anderson (1977) 20--40, averaging around 35
+%
+%- Wallace (1978) 25--35, and also asserts that in fractured bedrock, angles in this range remain stable for 100kys, and views facets as relatively stable
+%
+%- Menges (1990) mean 20; can be lower
+%
+%- Petit (2009a) 22--38
+%
+%- Wilkinson (2015) 36 +/- 3
+
+
+%o Dip of normal faults commonly 50--70o or more
+%
+%- Schneider (1925) Wasatch in quarry 72
+%
+%- Pack (1926) about 70 (Gilluly has him saying 60--75)
+%
+%- Blackwelder (1928) ``commonly between 50 and 90 degrees, and rarely less than 40 degrees''
+%
+%- Gilluly (1928) Lakes of Killarney fault: more than 60o; Genoa Peak, NV (quoting Lawson) 65; Plum Ridge, OR (citing Gilbert) 49; Toyabe, NV, 54, 59, 67
+%
+%- Fuller (1931) Oregon: 50--65, averaging about 60
+%
+%- Wallace (1978) 50--90
+%
+%- Wilkinson (2017) Campo Felice 57 +/- 4
+
+
+
+%o Facets are much gentler than faults, so not simply exhumed fault planes
+%
+%- Pack (1926)
+%
+%- Blackwelder (1928)
+%
+%- Gilluly (1928)
+%
+%- Cotton (1950) facets often similar in steepness to canyon walls behind (doesn't explicitly say it's because of dip difference, but does clearly say facets are eroded)
+%
+%(- Anderson (1977) articulates this, but based on earlier studies)
+
+
+
+%o Episodes of quiescence recorded by uplifted and ``flattened'' facets or back-worn, separated by benches
+%
+%- Hamblin (1976)
+%
+%- Anderson (1977)
+
+
+%o Lower parts of facets are younger than upper parts
+%
+%- Gilbert (1928)
+%
+%- Wallace (1978)
+%
+%- Menges (1990)
+
+
+%o Not all facets are triangular
+%
+%- Wallace (1978)
+
+
+%o Initial erosion fast, then slows below angle of repose; long term stability
+%
+%- Wallace (1978) fast from FP to 30--37, then slow from 30 to 20
+
+
+%o Facets can have soil, or be bare
+%
+%- Menges (1990): soil, SdC (less than 0.1 to more than 1 m)
+%
+%- Tucker (2011): mostly bare, Italy
+%
+
+%o Processes:
+%
+%- Gilbert 1928 On the ineffectiveness of slope wash: "During the process of gravitational grading the facet may be washed by rains, but the rains accomplish little in the way of erosion... The explanation is probably to be found in absorption and retardation by porous talus and in conditions un favorable to concentration of flow."
+%
+%- Menges (1990): unchanneled slope wash; networks of gullies and rills where thin mantle
+%
+%- Ellis (1999) (and probably Densmore) formed by landsliding; weathering is too slow. Well defined angle of repose.
+%
+%- But Tucker et al.~(2011) estimated ero rate of 0.2--0.3 mm/yr, not too far from estimates of rock weathering rates
+%
+%- Petit (2009a) questioned bedrock landsliding; instead favored ``progressive fault plane exhumation and restrained scarp erosion'' because of convex profile, lack of products/features commonly associated with bedrock landsliding
+
+
+
+
+%o Lithology influences slope and morphology of facets
+%
+%- Menges (1990) (but less influential than site position)
+%
+%- Zuck and McCalpin (2000)
+
+
+%o Correlation between facet height and angle and either position in a fault array (steepest near middle), or slip rate
+%
+%- Menges (1990): steeper and taller toward center where fault zone narrow; gentler, shorter at ends of seg boundaries
+%
+%- Ellis (1999) model: facet height doesn't reflect slip rate in a simple way
+%
+%- Depolo and Anderson (2000): correlation between facet height and throw rate
+%
+%- Zuch and McCalpin (2000): geometry controlled by ``rate of seismotectonic uplift''
+%
+%- Petit (2009a): model predicts angle and height depend on throw rate
+%
+%- Strak (2011): experiment shows facet slope depends on slip rate up to a point, then not so much
+
+
+%o Transport limited
+%
+%- Menges (1990)
+
+
+%o Models
+%
+%- Densmore (1998) bedrock landsliding; model facets modified by geomorphic processes
+%
+%- Ellis (1999) LEM can make facets and other features
+%
+%- dePolo and Anderson (2000): data compatible with nonlinear diffusion model
+%
+%- Petit (2009a): diffusion, basically
+
+
+%o Sensitivity to fault dip
+%
+%- Petit (2009a): model not sensitive
+%
+%- Tucker (2011): a primary control
+
+
+%o Consistent slope-height ratio
+%
+%- Petit (2009b) up to 35--38, then constant slope regardless of height
+
+
+%o Sediment aprons below scarps
+%
+%- Bubeck (2015) 20--25
+
+
+
+%LIT TO REVIEW:
+
+%o Gilbert 1884
+%
+%``when we find a fault-scarp at the base of a mountain, we are assured that the uplifting "force has not ceased to act.''
+%
+%Beautiful! But not very relevant here.
+%
+%
+%o Russell 1884
+%
+%"The ruggedness of its topography, and the abruptness of the precipices enclosing the valleys, are mainly due to orographic displacement. The numerous fault-scarps form precipitous palisades across the country, from a few hundred to 1,500 or 2,000 feet in height, trending approximately north and south, and sometimes unbroken by passes for a distance of 50 miles." (Warner Valley and Hart Mountain scarp, Oregon)
+%
+%"That portion of the face of a heaved block that project above the adjacent thrown block is termed a "fault-scarp." Such a scarp is very commonly re moved by denudation, and although a fault may have a throw of per haps a mile, its presence may be unmarked in the topography of the country. This is the case especially in faults of great antiquity, where the cliff of displacement has been long exposed to the agents of denuda tion. ... These scarps are sometimes several thousand feet high, as is illustrated by the precipitous eastern faces of the Sierra Nevada and Cascade Mountains, or the equally bold western wall of the Wahsatch Range."
+%
+%o Gilbert 1890
+%
+%Gilbert, G. K. (1890). Lake Bonneville (Vol. 1). US Government Printing Office.
+%
+%"The writer first became aware in the summer of 1876 that lines of faulting may sometimes be traced upon the ground by means of low cliffs or scarps due to displacement of so recent date that the atmospheric processes of sculpture have not yet restored the ordinary forms of topographic detail."
+%
+% Definition of fault scarp: "The faulting of rocks consists in the relative displacement of two masses separated by a fissure. The plane of the fissure is usually more or less vertical, and by virtue of the displacement one mass is made to project somewhat above the other. The portion of the fissure wall thus brought to view constitutes a variety of cliff or escarpment, and has been called a fault scarp."
+%
+%He has a long section on fault scarps, but I cannot find anything about facets per se.
+% 
+
+%o Davis 1903
+%
+%Davis, W. M., 1903, The mountain ranges of the Great Basin: Harvard Univ. Mus. Comp. Zoology Bull., Geol. Ser., v. 40, no. 3, p. 129-177.
+%
+%Diagrams and word pictures of fault-generated mountain fronts: ``The long sharp-crested ridges between the larger front ravines are still~terminated by triangular facets, very systematic in form and position, with their bases aligned along the mountain front. ... These basal facets are of importance in this stage of dis section, for they have suffered the least change of any part of the mountain front.''
+%
+%He draws them as exhumed fault planes, with the same dip as the fault.
+%
+%``as a whole the slopes are graded and cloaked with a thin cover of creeping waste,''
+%
+%``The Spur-Facets are not Wave-Cut.''
+%
+%``the retreat of a mountain front from its initial fault scarp will be greater on the stream lines than on the interstream surfaces, and again greater at the apex of a facet than at its base.''
+%
+%`` may be said that there has prevailingly been no active agent available for the removal of waste from the mountain base between the mouths of the streams. ... The conspicuous absence of such talus makes probable that the fault plane was by no means vertical, and suggests that the slope of the spur facets may not be greatly unlike the slope of the faults. In the Spanish Wahsatch, the small facets slope at an angle of 38° or 40° in the Provo Wahsatch, the slope from 32° to 38°.''
+%
+%(I think he's wrong, and that there often IS talus)
+%
+%His main aim seems to be to argue that the facets and other morphological aspects indicate active faulting, and that they aren't wave-eroded cliffs. 
+%
+
+
+
+
+%o Louderback (1904): Louderback, G. D. (1904). Basin Range structure of the Humboldt region. Bulletin of the Geological Society of America, 15(1), 289-346.
+%
+%Description of Humboldt ranges to help resolve debate around basin and range origins.
+%
+%not that helpful; does not discuss facets as far as I can tell
+
+
+
+%o Davis (1909) Geographical Essays
+%
+%Section describing ``the forms that should characterize the ideal case of a faulted block of homogeneous structure whose faulting has progressed at a slow and relatively uniform rate.''
+%
+%Illustration shows the facets as continuation of fault plane.
+%
+%``...basal facets ... have suffered the least change of any part of the mountain front.''
+%
+%``Spanish Wahsatch'' has basal facets at 38-40o
+%
+%Facets as an indication of active faulting...
+%
+%Argues that they are not wave-cut.
+%
+%Erosion ``will be greater at the apex of a facet than at its base.''---and here he gives a sketch showing an eroded facet, but then argues that we don't see the talus you'd expect, and notes its ``conspicuous absence,'' which ``makes it probable that the fault plane was by no means vertical, and suggests that the slope of the spur facets may not be greatly unlike the slope of the faults.'' Goes on to note facet slopes of 32--40o.
+
+
+
+%o Schneider, H. (1925). A discussion of certain geologic features of the Wasatch Mountains. The Journal of Geology, 33(1), 28-48.
+%
+%Notes quarry exposure in limestone a bit n of SLC that reveals 72o dip.
+%
+%mostly about structure, and arguing wasatch is an active mtn front not a fault-line scarp
+
+
+
+%o Pack (1926): Pack, F. J., 1926. New discoveries relating to the Wasatch fault. American Journal Science, 11: 399--410.
+%
+%``Some of the spurs terminate valley-ward in sharp triangular facets, especially near the base of the range.''
+%
+%Some have thought that the triangular facets ... are remnants of the exposed part of the fault surface, others that the face is a fault-line scarp, and still others that it is merely an eroded fault scarp.''
+%
+%Disagrees that facets are ``uneroded fragments of the old fault surface'' because ``(1) The slope of the facets is not far from thirty degrees, while the dip of the fault, where known, is close to 70o. (2) Not a single case has been observed in which a facet terminates downward in the Wasatch fault. [instead] facets are known to terminate downward in unfaulted rock floors. ... (3) in nearly every instance the fault line is a considerable distance valley-ward from the base of the facet, often as much as 500 to 1,000 feet, and occasionally more.''
+%
+%``...although the buried fault surface stands at an angle of approximately 70o, yet the eroded scarp slopes backward at angles seldom greater than 30o and usually less.'' (here he seems to be talking about exposures of the fault in basin sediment?) Shows a photo of bedrock scarp surface exposed in quarry, steeply dipping, with more gentle slope above. Apparently one of two places it had been observed. 
+%
+%``...the continually rising fault face on the upthrown block was protected from the effects of erosion by the continuously accumulating sediments on the downthrown block; and ... the exposed part of the fault face was undergoing recession.''
+%
+%``Eventually uplift will be exceeded [by erosion and aggradation], and the range will be slowly buried by its own waste.''
+%
+%A summary point is: ``The facets on the Wasatch front are not remnants of the fault surface.''
+%
+
+
+%o Blackwelder (1928) Blackwelder, E. (1928). The recognition of fault scarps. The Journal of Geology, 36(4), 289-311.
+%
+%``It is shown that many of the features which are commonly regarded as evidence of fault scarps are generally possessed also by fault-line scarps, which are formed by differential erosion on previously faulted substructures.''
+%
+%i.e., main point of the paper is to present criteria for distinguishing fault scarps from fault-line scarps
+%
+%``The idea that the present topography of the continents (outside of certain young orogenic belts) is due largely to the differential erosion of rocks of heterogeneous lithology and structure, although known to the Arabs in the tenth century, is even today not recognized by all geologists.''
+%
+%Facets are not steep enough to be unmodified or lightly etched fault planes:
+%
+%``Triangular facets on the ends of short spurs.-The triangular facet is one of the most commonly cited indicators of a fault scarp. It has been rather generally inferred that the more or less definitely triangular facets which terminate the spurs along many scarps are remnants of the fault surface itself; that they have been isolated from each other by the carving of deep transverse ravines; but that the facets themselves have been only slightly marred by erosion. The actual measurement of the frontal slope of a large number of these facets, by Louderback, the writer, and others, shows, however, that their inclination is generally between 20 and 30 degrees, and rarely so much as 32 degrees. On the other hand, where the fault plane itself is actually exposed in the rock, its dip is commonly between 50 and 90 degrees, and rarely less than 40 degrees. These facts indicate that the observed triangular facets are usually not remnants of the fault surface, but have been worn back to the usual slope of equilibrium that is common to mountain sides of various origins.''
+
+
+
+
+
+%o Gilbert 1928
+%
+%Gilbert, G. K. (1928). Studies of basin-range structure (Vol. 153). US Government Printing Office.
+%
+%"The facet produced by faulting has a somewhat different history. First, it has an initial slope?the dip of the fault."
+%
+%"Second, a facet made by faulting, or the footwall from which it is shaped, does not emerge all at once but is formed by a series of small movements separated by intervals of time. It is older, therefore, at the top than at the base, and the slope at the top may have been materially reduced by weathering while that at the base is unchanged."
+%
+%"...the dip of the fault corresponds so nearly with the angle of rest that adjustment to stability involves little or no wasting."
+%
+%Convexity:
+%
+%"The general convexity of the facet profiles where such profiles are best preserved suggests that the fault surface as a whole is convex toward the west and that the rising movement of the Wasatch block was combined with a notable rotation toward the east. The alternative view is that the convexity of the profiles is due chiefly to the deeper weathering of the upper parts of the facets because of their longer exposure."
+%
+%So, a question that arises: what are the necessary and sufficient conditions for convexity in a facet? Can it arise solely due to weathering and erosion, or does it require fault rotation?
+%
+%"The slope and the texture of the facet result from wasting, and the wasting is conditioned by the nature of the material and by climate. An omnipresent agent in the process of wasting is gravity. If the material is clastic and uncemented, gravity at once determines a slope at the angle of rest, 30° to 35°. Coherent material stands in a cliff until disintegrated, and as disintegration proceeds it is graded to the angle of rest. Under an arid climate the dominant cause of disintegration is disruptive strain from changes of temperature. Under a moist temperate climate rend ing by frost is important and chemical weathering also takes place."
+%
+%On the ineffectiveness of slope wash: "During the process of gravitational grading the facet may be washed by rains, but the rains accomplish little in the way of erosion... The explanation is probably to be found in absorption and retardation by porous talus and in conditions un favorable to concentration of flow."
+%
+%Notes that fault facets tend to be smoother than ``sapping'' facets (i.e., in canyon walls)
+%
+%"the dip of the fault corresponds so nearly with the angle of rest that adjustment to stability involves little or no wasting."
+
+
+
+%o Gilluly, J., 1928. Basin-range faulting along the Oquirrh Range,
+%Utah. Geological Survey of America Bulletin, 39: 1103-1130.
+%
+%``In this area triangular facets of spurs are found only along the Lakes of Killarney fault, where they slope at an angle of 21 to 30 degrees. The bases of the facets are at the fault trace and their higher parts have been but slightly dissected; yet, as the dip of the fault averages more than 60 degrees along this part of the range front, a wedge having an apical angle of 30 to 40 degrees has evidently been removed from each facet. This angle indicates a retreat of the top of the spur from the fault surface of 2,000 to nearly 4,000 feet in spurs that are 1,800 feet high. All this retreat occurred without destruction of the triangular outline of the facets, although at some places that outline has been blurred.
+%
+%The conclusion has been reached by Gilbert21 with regard to the Wasatch Range, and by Davis 22 by abstract deduction, that where the facets are practically undissected and the fans along the mountain front are small, the slope of the lower part of the facets conforms closely to the fault-plane. This conclusion appears reasonable a priori, and, indeed, faults having the low dip requisite under this theory have been actually observed in the Bear Eiver Eange, Utah.23 The frequent occtirrence in the Great Basin of scarp angles ranging from 25 to 35 degrees has been commented on by Davis,24 though he specifically dis­ claims that he believes all Basin Eange faults possess dips so low. But this very persistence of scarps of low angle, well preserved on triangular facets, must call into question the deduction that they closely represent the footwalls of faults, especially when we consider the great number of such scarps that rise above faults of decidedly steep dip.
+%
+%Lawson 25 describes the magnificent triangular facets at Genoa Peak, Nevada, which slope at angles of 24 degrees. The scarps there are bounded at their bases by diversely oriented faults, whose striated rock footwalls are exposed at several places. The fault dip, measured on the polished rock, is 65 degrees. ... [and he notes that absence of large fans in these various places]
+%
+%The Wasatch fault has been studied by Schneider27 and Pack,28 as well as by Gilbert,29 and both Schneider and Pack differ from Gilbert with respect to the angle of dip of the fault. Schneider reports and figures an artificial exposure of the fault just north of Salt Lake City, where the rock footwall of the fault dips 72 degrees west. Pack fig­ ures the same exposure and furnishes the additional information that the eroded scarps above the fault slope at an angle of 25 degrees. ...
+%
+%The Wasatch fault is exposed also at Becks Spring, about a mile far­ ther north, where it dips about 70 degrees, as reported by both Pack and Gilbert. The eroded scarp above the fault recedes at an angle of 15 to 20 degrees, according to Pack. [and other estimates by Pack 60-75 deg]''
+%
+%``... regardless of the dip of the Wasatch fault as a whole, Pack?s observations prove that in one area, where the spurs are well faceted and fans are almost entirely absent, the actual fault surface dips not at 30 degrees, the slope of the facet, but at 70 degrees. This conclusion agrees with that inferred from the relations at Genoa Peak, Nevada, namely, the slopes of facets, even in the absence of significant fans, are necessarily flatter thanthe dips of the faults to which they are related.''
+%
+%Plum Ridge, tilted basalt block in Oregon near Klamath Lakes, was reported by Gilbert to have 49o dip but 34o scarp, which Gilbert noted was around angle of repose. Gilluly continues: ``Accordingly, it seems wholly im­ probable that any scarp characterized by ?faceted spurs? of physiographically greater age should have retained the dip of its bounding fault.''
+%
+%Toyabe Range, NV: ``Well preserved fault grooves on bedrock dip 67 degrees toward the valley. This range has many triangular facets whose slopes range from 20 to 35 degrees.'' Notes 2 other estimates at 54 and 59, resp.
+%
+%Concludes the section: ``...in view of the fact that demonstrably steep dips are associated with gently inclined facets, it would seem that more direct evidence than that of the slope of even entirely undissected facets must be adduced in order to show the angle of dip of a given Basin Range fault.''
+
+
+
+
+%o Fuller 1931 (Oregon)
+%
+%"This locality was the only one where the actual surface of the faults forming the scarps was
+%observed. These  fault  planes  dip  eastward  at  an  inclination  varying  from  about  50°  to  65°
+%They appear to average about 60° "
+%
+%"Although  individual  exposures  on  High  Steens  are  very  precipitous,  the  scarp  as  a  whole
+%shows  a  slope  close  to  20°.  On  the  other  hand,  the  basaltic  series  at  Bluejoint  Rim,  in  the
+%northern  portion  of  Warner  Valley,  has  preserved  locally  a  slope  of  almost  70°,  if  one
+%disregards the insignificant accumulation of talus at the base. There is no proof, however, that
+%this  surface  represents  the  uneroded  foot-wall  of  the  fault.  The  extreme  inclination  probably
+%is  due  in  part,  both  to  the  vertical  jointing  of  the  rock,  and  to  the  erosion  caused  by  the
+%former  presence  of  Bluejoint  Lake.  Possibly  the  sapping  may  have  been  increased  by  the
+%presence of underlying tuffaceous beds now unexposed."
+%
+%"Elsewhere  in  the  Great  Basin  the  scarps  show  a  relatively  uniform  slope,  usually  of  about
+%30°,  although  the  actual  faults,  as  on  Steens  Mountain,  have  averaged  close  to  60°"
+%
+%
+%o Sharp, R.P. (1940) Geomorphology of the Ruby-East Humboldt
+%Range, Nevada. Geol. Soc. Am. Bull., 51, 337?372.
+%
+%neat paper but not really relevant
+%
+
+%o Cotton 1950
+%
+%``The facets of a dissected tectonic scarp, though they may be very flat and strikingly coplanar, rarely preserve actual fault surfaces.''
+%
+%``...spurs...that descend between dissecting ravines or valleys end bluntly in line at the fault, and in many cases their ends assume the form of triangular facets. Commonly, however, the slopes of these facets do not differ materially in steepness from average slopes in the dissected part of the range behind them.''
+%
+%Also contrasts fault scarps that are buried by bajadas versus those stripped and incised by rivers; attributes the difference to precipitation.
+%
+%``...it seems highly probably, indeed, that nearly all facets, however suggestive of restoration of a continuous plane surface emerging at the fault line, have undergone considerable change of slope as a result of erosional grading.''
+%
+%
+%o Birot 1958
+%
+%[in french and not available]
+
+
+%o Hamblin 1976
+%
+%Has this idea that intervals of backwearing were reflected by little benches on facets. Would be cool to test with model.
+%
+%``The slope profile of each generation of facets would progressively flatten with age.''
+%
+%``...eight periods of essentially continuous movement separated by distinct periods of quiescence during which essentially no movement occurred and pediments de- veloped along the then-current base of the mountain front''
+
+
+%o Anderson, T., 1977. Compound faceted spurs and recurrent move­ment in the Wasatch fault zone, north-central Utah. Brigham Young University Geology Studies, 24 (2): 83-101.
+%
+%Like Hamblin (who seems to be the thesis adviser), idea of episodes of backwearing and pedimentation interspersed with fault slip, resulting in uplifted relict pediments. 
+%
+%Davis ``was the first to define and describe the triangular facets along the mountain front and conclude they were evidence of faulting. He ... concluded they were the primary fault surface, which has been disproved since.''
+%
+%Past studies have suggested ``...fault dips are 60o or higher and not equal to facet angles''
+%
+%``The dip of the main Wasatch fault at the surface was often misinterpreted by early workers to be equal to the slope angle of the triangular facets'' (quotes Davis '09, Gilbert '28, Baker '59). But then shown to be untrue by Pack (1926), Schneider (1925), and Stillman (1928).
+%
+%``It is well established, then, that the facet slopes are not equal to the fault dips, and that the fault dips are quite high and tend to decrease at depth.'' 
+%
+%Quotes Davis on dissection of large facet by small ravines creating little facets
+%
+%``...the surface of triangular facets is a result of slope retreat to a stable slope angle and does not reflect the actual fault surface, which usually dips more than 60o. ... Nonetheless, for a unique active uplift period, the facet slope angles will be similar.''
+%
+%Goes on to quote, based on several references, common basal facet angles as 20--40o, with ``35o a good average figure.'' Notes that ``compound facets'' are gentler, about 25o, quoting Davis 1909.
+%
+%Interesting model (fig 2) of basically parallel retreat, including of basal facets, during times of fault quiescence.
+%
+%The rest of the paper is about identifying and correlating what he interprets as paleo-pediments, now preserved as near-horizontal ridges (spur crests) at similar elevation.
+
+
+
+%o Wallace 1977a Profiles and ages of young fault scarps, north- central Nevada: Geol. Soc. America Bull., v. 88, p. 1267- 1281.
+%
+%Not that relevant: ``Scarps represented by major faceted spurs on mountain fronts, linear mountain fronts, and other lineaments in bed rock are generally not treated here.''
+
+
+
+%o Wallace 1978
+%
+%``Characteristic features of fault-generated range fronts, such as those on the Humboldt and Tobin Ranges, include ... spur facets having slopes of 25° to 35°, ... and a basal fault scarp. ... Initial fault-scarp slopes of 50° to 90° are replaced by debris-controlled slopes of 30° to 37° within a few thousand years. In fractured bedrock, slope angles in the range of 25° to 35° remain relatively stable for hundreds of thousands of years and account for the relative stability of facets on spurs.''
+%
+%``...most examples described are in parts of the ranges where landforms are least affected by lithologic variations. But even where lithologic differences cause complex erosion patterns, the geomorphic forms that are a consequence of range-front faulting rarely are completely obscured.''
+%
+%``Except for a time span of a very few hundred years following a fault offset, and at a scale of a fault scarp a few meters high, the facets represent eroded fault planes. The slopes of the facets may range from about 25° to 35°, whereas the fault plane gener- ally dips at angles of 50° to 90°, less commonly as low as 45°. ... The initial scarp, which is a fault-plane surface, is replaced within a few hundred years by a debris slope ... and it is the debris slope angle or angle of repose of coarse clasts that largely controls the facet slopes for hundreds of thousands of years or even a few million years. ... The lower part of the facet thus tends at all times to be a younger surface than the upper part. Erosion on the flanks of the spur, which lowers the top of the spur, and erosion on the facet itself lessen the slope of the facet.''
+%
+%``Not all facets are triangular. The triangular facet would occur only where the spur is sharp crested. If the spur truncated were flat topped, perhaps a relict of an upland surface, the facet would be trapezoidal.''
+%
+%``The decrease from slopes over 50° to those in the range of 30° to 37° apparently takes place relatively rapidly, as compared to the decrease from 30° to 20° (fig. 7). The facets thus are stable over a relatively long period of time.''
+
+
+%o Menges 1990 Soils and geomorphic evolution of bedrock facets on a tectonically active mountain front, western Sangre de Cristo Mountains, New Mexico
+%
+%``Precambrian gneisses and Tertiary volcanic and plutonic rocks''
+%
+%Facets have soil: ``The undissected parts of most facets are transport-limited hillslopes mantled with varyingthicknesses (0.1 to $>$ 1m thick) of sand and gravel colluviumbetween generally sparse ( $<$ 10-30\%) bedrock outcrops.''
+%
+%``The presence of strongly weathered profiles and thick colluvium suggests that rates of colluvial transport and hillslope erosion are less than or equalto rates ofsoil developmentoverat least a largepart ofthe Holocene.''
+%
+%``...degree of soil development generally increases and the thickness of colluvium decreases upslope on most facets. ... degree of weathering in subsurface bedrock commonly increases more systematically upslope on most facets than coUuvial soils. This pattern is consistent with an increase in age with height on these fault- generated facet hillslopes.''
+%
+%``Facets are triangular- to po- lygonal-shaped bedrock hillslopes located at the base of mountain fronts. They develop on the interfluves, or divides, between the mouths of large drainage basins on the range block ... Triangular facets are the dissected remnants of fault-line scarps that form during progressive incremen- tal uplift on the range-front fault over inter- mediate time scales of 103 to 106 years (Bull, 1987); thus facets represent the most direct bedrock expression of tectonic activity on the range-bounding fault zone.''
+%
+%``The geometry and surface stratigraphy of successive gravel lobes and swales suggest at least a partial relationship to discontinuous downslope transport of colluvium by unchannelized slope wash.''
+%
+%``Most bed- rock outcrops are small and discontinuous, encompassing $\le$1-5 m in length along any one side.''
+%
+%``
+%The thickness of colluvial deposits varies widely in and among facet transects within extremes of $<$ 10 cm to 1+ m (Table 1, Figs. 7- 9).''
+%
+%``...silt of eolian (?) origin''
+%
+%His profiles are planar to convex, often with a slightly concave lower bit
+%
+%Steepest angles of each facet in his table of 9: 22, 25, 30, 9, 36, 32, 31, 25, 22.
+%
+%``the morphology of basal facets at more than half of the sites cluster around a limited range of values in mean slope angles (20 ° ), heights (55-80 m), and areas (0.015- 0.020 kin2) ... Unusually large, steep facets oc- cur at sites 4, 7 and 8 above narrow fault zones in the central or south-central reaches of sub- segments or segments, whereas small, low-gra- dient facets preferentially develop near the northern ends of major segment boundaries''
+%
+%``inter-bedrock variation in all morphometric parameters, although substantial, is generally less than that associated with site position ... pattern sug- gests little consistent interaction between bed- rock and the large-scale morphology of basal
+%facets.''
+%
+%but gneiss facets have more slope irregularity than granitic ones
+%
+%``The soil profile data reveal the presence of ubiquitous and moderately thick deposits of colluvium on most facets. Bedrock outcrop is generally sparse, comprising $<$ 20\%, and commonly $<$ 5-10\%, of the total measured slope lengths on transects. ... The pervasive presence of coUuvium with significant soil development on facets suggests that processes and rates of hiUslope degradation are limited more by transporta- tion of debris than by production of material by weathering''
+%
+%``Extensive networks of contin- uous gullies and rills have developed on and adjacent to many of the thinly mantled facets.'' (which he relates to facets in areas of more complex faulting)
+
+
+
+%o Harbor, D.J. (1997) Landscape evolution at the margin of the Basin and Range. Geology, 25, 1111?1114.
+%
+%nothing on facets
+
+
+%o Densmore 1998
+%
+%LEM reproduces facets using a stochastic bedrock landsliding algorithm. 
+%
+%``... triangular facets [in the model] are highly modified and shaped by geomorphic processes a,nd are therefore generally not simply exhumedrem- nantsof the originalfault surface.''
+
+
+%o Ellis 1999
+%
+%``Numerical landscapes reveal the same features observed in the field, including facets, spur benches, piedmonts, and relatively linear and regularly spaced drainages. ... The value of the experiments presented here is to demonstrate that the astute and impressive observations made by the likes of Gilbert, Davis and Dutton are reproducible using a relatively simple description of the relevant physics and that we can recognize and explain various landscape morphologies that have in the past been the subject of necessarily qualtitative reasoning.''
+%
+%``Of particular interest to us are the features that caught the eyes of previous investigators, the most obvious of which is the triangular facet. It is clear that the facets developed here are not exhumed portions of the fault but that they are formed predominantly by landsliding. Densmore et al. (1998) demonstrated that some form of mass movement was necessary to produce facets; the much slower processes of regolith production and downslope transport are incapable of removing enough material from the hillslopes.''
+%
+%``We suggest that facets owe their very uniform slope (Menges, 1990) not to the dip of the exhumed fault plane but to the high efficiency of bedrock landsliding in responding to the monotonic fall in base level imposed by slip on the frontal fault, and to the existence of a well-defined rock mass ?angle of repose?. Their triangular shape is similarly maintained by bedrock landsliding in response to continued incision of the catchments on either side of the facet. In other words, it reflects the expected form of a strength-limited rock mass with falling base-levels on three sides.''
+%
+%``...facet height remains relatively constant and does not reflect in a simple manner the rate of slip across the range-front normal fault.''
+%
+%``We concur with previous studies that link facet formation with periods of active fault displacement (Hamblin, 1976; Wallace, 1978). We view facets, however, as secondary landforms that owe their size and shape to the rock strength and to spacing between the incising channels that bound them, and we see no evidence that facet height should correspond to fault slip-rate. In contrast, the combination of high uplift and erosion rates implies that facets, far from being static or remnant landforms, are extremely active. Despite this, individual facets are recognizable as distinct landforms for long periods of time. ... We suggest that facets owe their very uniform slope (Menges, 1990) not to the dip of the exhumed fault plane but to the high efficiency of bedrock landsliding in responding to the monotonic fall in base- level imposed by slip on the frontal fault. Their triangular shape is similarly maintained by bedrock landsliding in response to continued incision of the catchments on either side of the facet.''
+%
+%``While facets are generally not exhumed or preserved fault planes and do not directly reflect the dip of the fault, a very small fraction of facets that have yet to fail through landsliding may retain parts of the fault plane ... In general, however, facets serve as indicators of the maximum slope and height of stable hillslopes, and thus of the rock mass strength''
+
+
+%o San'kov, V., Déverchère, J., Gaudemer, Y., Houdry, F., \& Filippov, A. (2000). Geometry and rate of faulting in the North Baikal Rift, Siberia. Tectonics, 19(4), 707-722.
+%
+%``Mountain fronts are characterized by alignments of steep-faceted spurs, typical of active normal faulting''
+%
+%``The intermediate generation [of fault scarps], called S2, shows well-preserved, typical triangular faceted spurs 200-500 m high''
+%
+%``At thebaseof thetriangularfacets(S2) 200 to 300 m high,anetworkofsubparalleslcarps(S3),orientedN50øEand 15 km long at least,clearlydisruptssedimentsaccumulatedin the piedmont.''
+
+
+%o dePolo and Anderson 2000
+%
+%``We use the occurrence and/or absence of primary tectonic geomorphology, alluvial fault scarps and fault facets, to distinguished between categories of faults that have differences of orders of magnitudes in slip rate.''
+%
+%Use a 3-part category: those with facets at least 30 m high are considered most active.
+%
+%Vertical slip vs facet height:
+%\begin{equation}
+%\log_{10} S_v=0.00248H - 0.938
+%\end{equation}
+%
+%``compiling 45 faults with determined slip rates from arid and semi-arid environments, and examining these faults for the simplest indicators of rate. We find that order-of-magnitude differences in fault slip rates are related to the existence and nonexistence of two geo- morphic features: alluvial fault scarps and fault facets.''
+%
+%``Fault facets are triangular- and trapezoidal- shaped hillslopes that are parallel to the range front''
+%
+%Faults without active facets are those with vertical slip rates of several 10s of microns/yr or less.
+%
+%``Relict facets are usually deeply eroded, preserved in rocks with relatively high erosional resistance (commonly limestones and dolo- mites), limited in occurrence along a fault, commonly retreated from a fault, and are associated with other geomorphic indicators of moderate slip rate faults, such as embayed range fronts and entrenched Pleistocene alluvial fans''
+%
+%`` Twenty-five of the calibration faults fall into this category [type 1], with vertical slip rates ranging from approxi- mately 0.1 to 2 m kyr?1''
+%
+%They also use a linear diffusion model, quoting Bob 1994.
+%
+%``As shown by Anderson (1994), this [logarithmic H vs slip rate] is predicted by a diffusion model in which the diffusion coeffi- cient increases exponentially with increasing slope. The relationship shown in Fig. 6 can thus be predicted using nonlinear diffusion parameters of the type given by Anderson (1994).''
+
+
+%o Zuchiewicz 2000:Zuchiewicz, W. A. \& McCalpin, J. P., 2000. Geometry of faceted spurs on an active normal fault: case study of the Central Wasatch Fault, Utah, U.S.A. Annales Societatis Geologorum Poloniae, 70: 231-249.
+%
+%``four fault segments studied (Brigham City, Weber, Salt Lake City, and Spanish Fork)''
+%
+%``The height of a faceted spur is a function of uplift whereas average slope may be affected by a variety of factors. On homogeneous bedrock the youngest facets are usually the steepest. Along the Wasatch fault such a relationship is, however, seldom observed due to either highly differen­ tiated lithology of underlying rocks or the presence of subsidiary, high-angle normal faults that run parallel to the main fault zone, and dip towards the base of mountain front. ... The geometry of faceted spurs developed on differentiated bedrock, although controlled by seismotectonic uplift, is also strongly modified by rock resistance to erosion and by bedrock structure.''
+%
+%``...principal objective of this study is to decide whether the morphology of a triangular facet is a function of uplift rate and climate, as generally accepted (cf. Bull, 1984, 1987), or is it rather controlled by the lithology and structure of the bedrock.''
+%
+%They use network analysis on ridges (not `channels') on the facets as a basis for morphometry. 
+%
+%``The height of faceted spurs, in turn, is a function of uplift, whereas average inclination may be controlled by a variety of factors. One of them is the age of the spur: on homogeneous bedrock (cf. Wallace,
+%1977, 1978) the younger facets are steepest (see also Fig. 5). Along the Central Wasatch fault such a relationship is, how­ ever, seldom observed due to either highly differentiated li- thology of underlying rocks (Brigham) or the presence of subsidiary, high-angle normal faults that are parallel to the Wasatch fault and dip to the west, i.e. towards the base of the mountain front (Spanish Fork).''
+%
+%Here's the key: ``The above review leads to a conclusion that the geome­ try of faceted spurs developed on differentiated bedrock, al­ though controlled primarily by the rate of seismotectonic uplift, is frequently modified by resistance to erosion and structure of the bedrock.''
+%
+%In other words, lithology matters but tectonic control is primary.
+
+
+%o Densmore 2004: Densmore, A. L., N. H. Dawers, S. Gupta, R. Guidon, and T. Goldin (2004), Footwall topographic development during continental extension, J. Geophys. Res., 109, F03001, doi:10.1029/2003JF000115.
+%
+%Key point is that footwall relief becomes erosionally limited. Facets are mentioned only in descriptive info, and only twice. Prediction is of ``boxcar'' like topography even when the uplift pattern is curved. Not really relevant to facet evolution, but does emphasize greater uplift in center of block.
+
+
+%o Petit 2009a: Petit, C., Y. Gunnell, N. Gonga-Saholiariliva, B. Meyer, and J. Se?guinot (2009), Faceted spurs at normal fault scarps: Insights from numerical modeling, J. Geophys. Res., 114, B05403, doi:10.1029/2008JB005955.
+%
+%``The sensitivity tests allow us to determine a dimensionless ratio of erosion, f, for which faceted spurs can develop. This study evidences a strong dependence of facet slope angle on throw rate for throw rates between 0.4 and 0.7 mm/a. Facet height is also shown to be a linear function of fault throw rate. Model performance is tested on the Wasatch Fault, Utah, using topographic, geologic, and seismologic data.''
+%
+%Notes that not all normal faults make facets, and shows Natron FZ as example of one that just makes a dissected scarp.
+%
+%They challenge the Ellis view of facets as shaped by bedrock landsliding: ``several observations have allowed us to question these conclusions. First, triangular facets commonly display a convex topographic profile with steepening slopes at the scarp base of the scarp. This militates in favor of progressive fault plane exhumation and restrained scarp erosion rather than for massive landsliding. Second, as noticed by Ellis et al. [1999], the products of such frequent landslides are not observed in the field and some faceted spurs still retain components of the fault plane. Third, the strange- looking topography generated by Zscape when the landslid- ing function is switched off [Densmore et al., 1998] suggests that mass movement is probably overestimated in the model formulation.''
+%
+%Model uses diffusion, with coefficient increased by 1.5x when slope is over 40o. Can have different coef for bedrock and sediment. Original Beaumont model for streams. Constant width; smaller Lf when depositing. Tracks sediment thickness. Tectonics uses an elastic dislocation solution with repeated M7, 2.5 m slip events on a 50x15km fault. Remeshing: add line of fault scarp nodes whenever cumulative displacement equals grid spacing.
+%
+%Sensitivity tests on triangular facet formation in KD-Lf-vr space. KD from 0.01 to 0.2 m2/y.
+%
+%Dimensionless ratio $f = 10^6K_D L_f / (v_r S)$, with $S$ being the model's surface area (so $v_r S$ is total maximum discharge). Distinct facets for between 10 and 90 (they say), with higher values bringing too little fluvial dissection, and lower values too much. Stepwise linear relation between facet angle and slip rate (might reflect step change in KD). Their interpretation for break is about curvature.
+%
+%``Equally surprisingly, mean facet slope does not seem to be primarily controlled by fault dip angle: for given erosion parameters, fresh scarps will be more rapidly eroded when the normal faults dip more steeply than at shallower dip angles, resulting in a similar facet slope whatever the fault dip angle.'' Hmm, that's odd.
+%
+%Facet ht linear fn of throw rate, regardless of fault dip.
+%
+%``In summary, this test shows that, in addition to erosion parameters, the fault throw rate is the main tectonic control on faceted spur shape, here defined by height and fault-perpendicular topographic slope. Fault dip angle does not seem to exert such a strong influence on either facet height or facet mean slope.''
+%
+%Application to Weber segment of Wasatch, btwn SLC and Ogden, underlain by pC qtz monzonite gneiss of Farmington Cyn complex. 
+%
+%Do an inversion with an RMS topo error on ``2.5D'' model, etching in major drainages in initial surface. Oddly, they allow their best fit to sit at the edge of the grid search, and there are local minima.
+%
+%They note their finding of facet slope proportional to throw rate is at odds with Ellis model.
+%
+%Fault dip doesn't matter much because: ``The models thus indicate that steep fault planes will initially produce steep scarps in which slope declines rapidly because of erosion, whereas low-dipping fault planes will produce more gently sloped scarps where erosion is accordingly less active, resulting in facet slope angles that remain similar to the fault dip.''
+%
+%``It follows that with even a rough approximation of the average climatic parameters (rainfall and diffusion coefficient), the measurement of facet slopes and heights can help estimate an unknown throw rate [Ganas et al., 2005]. Conversely, when average fault dip angle and slip rates are known, it is possible to recover the approximate rainfall parameters that prevailed during scarp evolution by inversion of the 2.5-D scarp topography.'' 
+%
+%I agree only if you replace climate with erosion rate. They assumed a fluvial K, and hence their quantitative precip param is totally contingent on that assumption.
+%
+%They note potential grid size dependence.
+
+
+%o Petit 2009b Height of faceted spurs, a proxy for determining long-term throw rates on normal faults: Evidence from the North Baikal Rift System, Siberia. TECTONICS, VOL. 28, TC6010, doi:10.1029/2009TC002555, 2009
+%
+%Facets 200 to over 900 m high, on 20 fault segments. Angles 22--38o. Mostly granite and gneiss. 106 facets with 90 m SRTM.
+%
+%Interesting: data from Baikal show linear correlation between facet ht and slope up to about 35--38o, then slope uniform as ht keeps growing. Their model-based relations: throw rate = 0.0013 x facet height; and facet slope angle increases by 4o per 100 m of height.
+%
+%Use this info to estimate throw rate and compare with apparent (minimum) throw, and back out an initiation age
+%
+%``...the method presented and tested in this study should help in unraveling the long-term, mean velocity of normal faults, keeping in mind that some sources of uncertainty exist. First among these is lithology...''
+%
+%``...triangular facets of the North Baikal Rift display similar slope-to-height ratios as those obtained numerically from coupled surface process and tectonic models. This allows us to directly infer long-term fault throw rates...'' SO, WHAT SETS THE SLOPE-TO-HEIGHT RATIO?
+
+
+%o Strak 2011
+%
+%``Facet morphology seems to depend on the fault slip rate except for the fastest experiment where faceted spurs are degraded due to mass wasting.''
+%
+%``In this paper, we present the results of explorative experimental modelling, based on the experimental protocol of Graveleau and Dominguez (2008) applied to the study of active normal faults. Our objec- tives are to document quantitatively the morphometric evolution of a normal fault escarpment and investigate, for a given rainfall rate, the impact of different fault slip rates on the morphologic evolution of the models as well as on the couplings between erosion and tectonics.''
+%
+%Somehow they manage to build a device that does 60o, flexed normal fault development. They get beautiful facets (and catchments and spurs and fans).
+%
+%``The surface of the triangular facets is progressively carved by hillslope processes inducing a rapid erosion of the exhumed fault plane. Consequently, triangular facets in our models do not display a typical convex shape but rather a con- cave one.''
+%
+%Facets aren't well preserved in the fastest case (they get mass wasting apparently, though they look ok to me in the figure).
+%
+%Convex-up channels
+%
+%Facet slope increases from slow to medium slip rate (17 to 22o) then remains around 22o for fast slip rate.
+%
+%``In nature, the typical height of faceted spurs varies between 200 m and 1000 m (up to ~1500 m for first-order generation of faceted spurs) and their mean slope ranges between 15° and 35°. ... Modelled mean slopes range between 15° and 23° ... [fast] experiment represents an end-member case where the fast fault slip rate may give high slopes on the escarpment, but these high slopes are rapidly destabilized by mass wasting. ...mass wasting seems to be the main hillslope process that explains the concavity of the facet profiles.''
+%
+%``In preliminary tests with twice less rainfall, we observed the develop- ment of a fault escarpment with a high slope (70?80°).''
+%
+%Conclusion: ``We cannot evidence, for this experimental setup, any clear relation- ship between the throw rate and facet morphology.''
+
+
+
+%o Bubeck 2015
+%
+%Regarding cosmogenic scarp exposure analysis: ``we suggest that the required analysis of the relative extent of tectonic and geomorphic exhumation mechanisms for such bedrock faults scarps is, in practice, very challenging without a subsurface con- straint from shallow geophysics and high resolution DEMs of the scarps.'' Meaning that you have to be careful with how you interpret various erosional and depositional features around the scarps, lest you mistake erosional exhumation for tectonic (or at least I think that's where they're going).
+%
+%``This paper attempts to quantify the roles of tectonic fault slip in earthquakes, as opposed to erosion, sedimentation and landsliding in exhuming carbonate fault planes associated with bed- rock fault scarps. We do this through study of 3 sites...''
+%
+%Magnola, Tre Monti, and Fiamignano
+%
+%Sediment aprons below these scarps are commonly 20--25o. 
+%
+%They stress identifying places where the seds appear undisturbed vs places where there may have been landslides or gullying.
+%
+%``We present evidence supporting tectonic exhumation of specific portions of the Magnola, Tre Monti and Fiamignano fault scarps man- ifested by a clear base of scarp contact and upper slope to fault-scarp contact, which are undisturbed by erosion or sedimentation.''
+%
+%``...site characterisation is es- sential to exclude sites where geomorphic processes such as footwall fluvial/debris-flow incision, hangingwall sedimentation and landslide activity have contributed to exhumation of fault planes.''
+
+
+
+
+%o Papanikolaou, van Balen et al 2015
+%
+%(does not mention facets---just a special issue review)
+
+
+%o Wilkinson et al. 2015: 
+%
+%25 TLS profiles on Campo Felice Fault show FW (rock) dip $40\pm 5^\circ$, HW (debris) $36\pm 3^\circ$, and bedrock scarp $57\pm 4^\circ$
+
+
+
+%o J Mason, S Schneiderwind, A Pallikarakis - Quaternary Research, 2017 - cambridge.org
+%
+%focus on cementation of carbonate colluvium, Lastros fault, Crete. TLS and GPR. GPR profiles show nice surface-parallel reflectors in colluvium. Colluvium became cemented under cooler conditions than present, due to springs along the fault.
+
+
+%o A Tye, T Stahl - Earth Surface Processes and Landforms, 2018
+%
+%Schmidt hammer for deciphering eq history from br fault scarp. Case of limestone Hebgen. Combined with TLS. Schmidt with BIC seems to work pretty well. Nothing on facets.
+%
+
+
+
 
 \end{document}
 
