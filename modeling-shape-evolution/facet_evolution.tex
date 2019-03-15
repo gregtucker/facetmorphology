@@ -314,10 +314,23 @@ The expected facet dip angle is
 \theta = \alpha - S',
 \label{eq:dissangle}
 \end{equation}
-where $\theta$ and $\alpha$ are both in radians. Figure~\ref{fig:dissruns} presents simulated profiles for facets eroded by dissolution, under different values of dimensionless weathering rate $S'$. The figure also compares narrow and wide facets. The simulated facets show a linear relation between angle and dissolution rate, consistent with the analytical expectation (equation~\ref{eq:predangle}) (Figure~\ref{fig:angdiss}).
+where $\theta$ and $\alpha$ are both in radians. Figure~\ref{fig:dissruns} presents simulated profiles for facets eroded by dissolution, under different values of dimensionless weathering rate $S'$. The figure also compares narrow and wide facets. The simulated facets show a linear relation between angle and dissolution rate, consistent with the analytical expectation (equation~\ref{eq:predangle}) (Figure~\ref{fig:angdiss}). As expected, there is no apparent relation between slope angle and the width of the cross section.
+
+\subsection{Facets with Regolith}
+
+We next consider the case in which rock weathers iso-volumetrically to regolith, with regolith motion driven by stochastic disturbance events (Figure~\ref{fig:cellstates}). Two dimensionless parameters determine the model's behavior:
+\begin{eqnarray*}
+\textrm{Dimensionless weathering rate:} & w' = w\tau \\
+\textrm{Dimensionless disturbance rate:} & d' = d\tau.
+\end{eqnarray*}
+Figures~\ref{fig:dwprofiles} and \ref{fig:angw} illustrate the role of these two parameters for the case of a facet of fixed width. The model shows three behavior regimes. When $w'\gg d'$, gradient depends on the disturbance frequency regardless of weathering rate. In this the transport-limited regime, solutions with $d'\ge 1$ represent angle-of-repose slopes (recall that the model has a 30$^\circ$ effective angle of repose). When $w' < 1$, slope angle depends primarily on $w'$. But even in this weathering-controlled regime, disturbance rate continues to have some influence except in the extreme dissolute-limited case when there is no regolith to move (Figure~\ref{fig:angw}, solid curve and circles).
 
 
-[from here, raise the question of non-dissolution, when rock turns to regolith which then gets transported. there are two dimensionless parameters, $d$, and $w$. we explore their influence with a matrix of experiments in which a facet of fixed width is grown... refer to figure 7. THen show and discuss figure 8, which is kind of the money fig. it outlines realms of behavior: wx limited at low w', but note that rego still plays a role, and all else equal, will be steeper with lower d. t-lim, where w doesn't matter. then look at fig 9, which shows reg cover much more influenced by w than d.]
+
+
+[next look at fig 9, which shows reg cover much more influenced by w than d.]
+
+...note that angle of repose is kind of an attractor state: any solution with $w'\gg d'$ and $d'\ge 1$ gives you ang rep.
 
 ...then introduce question of colluvial wedges
 
