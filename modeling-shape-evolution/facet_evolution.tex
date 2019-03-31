@@ -227,6 +227,12 @@ this is a highly abstract paper
 
 Mountain ranges in extensional tectonic settings often display fault scarps adorned with facets: steep, basin-facing hillslopes that follow the surface trace of the bounding fault and mark the transition from footwall to hangingwall (Figure~\ref{fig:facets}). In many cases, dissection of a footwall range by transverse streams creates flights of triangular facets: facet slopes that are flanked by V-shaped transverse valleys, which present a triangular shape when viewed from the adjacent basin (see especially Figures~\ref{fig:facets}a,e,i). In other settings, facets may be trapezoidal in profile, or even compose a more or less continuous surface along a weakly dissected footwall range \citep[e.g.,][]{wallace1978geometry} (Figure~\ref{fig:facets}g,h).
 
+\begin{figure}[ht!]
+\centerline{\includegraphics{Figures/facet_photos.pdf}}
+\caption{Examples of normal-fault facets. (a) mountain front in Lake Baikal Rift Zone, Russia. (b) Kung Co half graben, Tibet. (c) Hatay Graben, Antakya, Turkey \citep{boulton2009quantifying}. (d) Wasatch fault system, Provo section, near Springville, Utah, USA. (e) west side of Sangre de Cristo range, San Luis Valley, Colorado, USA. (f) Star Valley fault, Wyoming, USA. Note fault trace (light blue dotted line) at base of range front. (g) Magnola fault, central Apennines, Italy. Vegetation break marks approximate location of fault trace. (h) Portion of the Fucino fault near Gioi di Marsi, Italy. Fault trace shown in light blue dotted line. (i) Wasatch fault system, Nephi section, Utah, USA. Fault trace shown in light blue dotted line.}
+\label{fig:facets}
+\end{figure}
+
 The aim in this paper is to explore the sculpting of facet cross-sectional profiles, using a numerical process-based model as an interpretive tool. We examine the extent to which the model can account for the diversity in facet morphology, and in particular diversity in slope angle, regolith cover, profile shape, and presence or absence of a slope break across the range-bounding fault. We also use the model to frame testable predictions for the relationship between facet morphology, erosion rate, and fault slip rate.
 
 
@@ -251,6 +257,12 @@ If facets take shape through a collaboration between tectonics and erosion, then
 \end{equation}
 where $\alpha$ is the fault dip angle, $\theta$ is the facet dip angle, $E$ is the slope-normal facet erosion rate, and $V$ is the fault slip rate. The concept is illustrated in Figure~\ref{fig:facetschem}. One implication of the geometry illustrated in Figure~\ref{fig:facetschem} is that if one knew the fault slip rate and the fault dip, one could estimate the erosion rate (averaged over the age of the facet). Conversely, independent knowledge of the erosion rate would allow estimation of the slip rate.
 
+\begin{figure}[ht!]
+\centerline{\includegraphics{Figures/facet_schematic.pdf}}
+\caption{Conceptual illustration showing how fault slip rate, $V$, fault dip angle, $\alpha$, and facet erosion rate, $E$, combine to set the dip angle of a facet profile. (Modified from \citet{tucker2011geomorphic}.)} 
+\label{fig:facetschem}
+\end{figure}
+
 The geometric view of facets as surfaces that erode as they emerge from below ground leads to the question of what factors determine the erosion rate on a normal-fault facet---and this in turn raises the questions of what are the controlling processes. \citet{wallace1978geometry} hypothesized that fault scarps created by tectonic offset should relax relatively quickly from the initial fault dip to a more stable angle of 30 to 37$^\circ$, and thereafter lay back much more slowly. \citet{densmore1998landsliding} and \citet{ellis1999development} proposed, on the basis of numerical model experiments, that many facets form by bedrock landsliding, and that the facet surfaces essentially represent failure planes. \citet{petit2009faceted} questioned this interpretation, in part because of the scarcity of features such as head scarps and debris lobes that one would expect to be associated with bedrock landsliding. Our own observations of facets in the Italian Apennines and the Wasatch fault system, USA, also lead us to support the view of \citet{petit2009faceted} that facets commonly undergo progressive weathering and erosion. \citet{menges1990soils} suggested that facets might be effectively transport-limited, yet the fact that some facets have extensive bedrock outcrops suggests that this is not always the case. Whereas \citet{menges1990soils} noted some evidence for slope wash, \citet{gilbert1928studies} argued that ``rains accomplish little in the way of erosion... [due to] absorption and retardation by porous talus and in conditions unfavorable to concentration of flow.'' Finally, variations in facet morphology and scale with lithology implies that facet materials vary in their susceptibility to weathering and transport \citep{menges1990soils,zuchiewicz2000geometry}. 
 
 Numerical models of extensional mountain range evolution can reproduce classic landforms such as facets, spurs, and wineglass-shaped valleys, but models differ in their representation of the governing processes. \citet{densmore1998landsliding} and \citet{ellis1999development} introduced a model that included rock weathering, regolith creep, and bedrock landsliding, and explored a part of the parameter space in which facet erosion occurred primarily by landsliding. A model developed by \citet{petit2009faceted} represented hillslope erosion using a diffusion formulation, with a higher transport coefficient applied to slopes steeper than $40^\circ$. In their study of facets in the Great Basin, \citet{depolo2000estimating} showed that the observed relationship between slip rate and facet angle was consistent with a nonlinear diffusion model. Similarly, analysis of facets along the Wasatch fault system by \citet{struble2019mountain} suggested a nonlinear relationship between erosion rate and facet angle. The planform landscape evolution model studied by \citet{petit2009faceted} showed little correlation between facet slope and fault dip angle, whereas the geometrical analysis of \citet{tucker2011geomorphic} implies that fault dip should be a primary control. In summary, the community has developed several published models of extensional footwall evolution, but the implications of these models for facet evolution differ depending on the assumed process rules. To make further progress, we need models that can account for the observed diversity in facet morphology, including variations in slope angle, regolith cover, and shape, and that make field-testable predictions about the relationship between morphology, erosion rate, and slip rate.
@@ -271,7 +283,19 @@ Section so-and-so does X, then Y, etc...
 
 The facet profile evolution model builds on ``Grain Hill'' cellular automaton framework \citep{tucker2018lattice}, with the addition of a 60$^\circ$ dipping normal fault. Advantages of the Grain Hill model include the ability to reproduce a range of hillslope forms, from soil mantled to rocky; representation of short-range and long-range (``nonlocal'') sediment motion, depending on topography; direct treatment of stochastic disturbance; and ability to relate model parameters to the more commonly used transport and weathering rate coefficients. The model domain consists of a lattice of hexagonal cells that represents a vertical cross-section through a hypothetical facet and its adjacent colluvial wedge (Figure~\ref{fig:domainschematic}). The lower left corner of the model represents a longitudinal stream that removes any debris delivered to it, and whose elevation is fixed to the hangingwall block, which serves as the reference frame for the model. The right side of the model represents the upper edge of the facet at that particular cross-section; increasing or decreasing the width of the domain equates to moving the cross section toward or away from the facet tip (Figure~\ref{fig:domainschematic}).
 
+\begin{figure}[ht!]
+\centerline{\includegraphics{Figures/facet_plan_and_profile.pdf}}
+\caption{Schematic illustration of model domain, which represents vertical cross-section through an idealized facet and its adjacent colluvial wedge (a--a'). Right side of domain represents the upper edge of facet, and left side represents a longitudinal stream in the hangingwall that removes any debris delivered to it. Changing the position of the cross section (for example, from a--a' to b--b'), and therefore its length, is accomplished by changing the width of the model domain.}
+\label{fig:domainschematic}
+\end{figure}
+
 Each hexagonal model cell represents one of three types of material: air, rock, or regolith (Figure~\ref{fig:cellstates}). Regolith cells may be stationary, or may be in a state of motion in one of the six lattice directions. Collectively, these materials and motion directions are represented by assigning one of nine integer state codes to each cell in the domain. Stochastic, pairwise transitions represent the processes of rock weathering, regolith disturbance, and ensuing regolith motion \citep{tucker2016celllab,tucker2018lattice}. For example, the rock cell in rock-air pair has a user-specified probability per unit time of transitioning to a regolith cell, representing weathering. Instead of clicking through a series of time steps of fixed duration, the model iterates over a sequence of these stochastic transitions, in which one or both cells in an adjacent pair changes state. The algorithm works by scheduling each potential transition event at a randomly generated future time, using an exponential probability distribution function of inter-event waiting times. The program then iterates in chronological order through these scheduled events. As the domain evolves, new transitions are scheduled, and some previously scheduled ones are invalidated. \citet{tucker2016celllab} provide further details on the continuous-time stochastic framework and the algorithms that implement it.
+
+\begin{figure}[ht!]
+\centerline{\includegraphics[scale=0.7]{Figures/cell_states_and_transitions.pdf}}
+\caption{Illustration of cell states and pairwise transitions in the Grain Facet model. Each cell assigned an integer from 0 to 8 that represents its state (0 is fluid, states 1--6 represent the six directions of motion, state 7 is resting sediment, and state 8 is rock). (Figure modified from \citet{tucker2018lattice}).}
+\label{fig:cellstates}
+\end{figure}
 
 \citet{tucker2018lattice} present the rule set for the Grain Hill model. Here, we briefly summarize these rules, and describe two additions to the version they present: the implementation of periodic slip on a $60^\circ$ dipping normal-fault, and the addition of a rule that represents dissolution of bedrock.
 
@@ -316,6 +340,18 @@ The expected facet dip angle is
 \end{equation}
 where $\theta$ and $\alpha$ are both in radians. Figure~\ref{fig:dissruns} presents simulated profiles for facets eroded by dissolution, under different values of dimensionless weathering rate $S'$. The figure also compares narrow and wide facets. The simulated facets show a linear relation between angle and dissolution rate, consistent with the analytical expectation (equation~\ref{eq:predangle}) (Figure~\ref{fig:angdiss}). As expected, there is no apparent relation between slope angle and the width of the cross section.
 
+\begin{figure}[ht!]
+\centerline{\includegraphics{Figures/dissolution_model_profiles.pdf}}
+\caption{Simulated facet cross-sectional profiles formed under a combination of fault slip and dissolution. Dark gray indicates rock, and light blue is air. Labels show the dimensionless effective dissolution efficiency, $S'$ (equation~\ref{eq:nddissefficiency}), and the predicted and simulated average facet slope angle, $\theta$. Line shows facet profile predicted by equation (\ref{eq:dissangle}).}
+\label{fig:dissruns}
+\end{figure}
+
+\begin{figure}[ht!]
+\centerline{\includegraphics{Figures/angle_vs_dissolution.pdf}}
+\caption{Difference in angle between fault plane ($\alpha$) and facet ($\theta$), as a function of the nominal dissolution rate $2\delta s$, from runs with fault slip and dissolution (only). Open circles and plusses show individual model runs with a narrow and wide horizontal domain, respectively (see Figure~\ref{fig:dissruns}). Line shows the prediction of equation~\ref{eq:angdif}.}
+\label{fig:angdiss}
+\end{figure}
+
 \subsection{Facets with Regolith}
 
 We next consider the case in which rock weathers iso-volumetrically to regolith, with regolith motion driven by stochastic disturbance events (Figure~\ref{fig:cellstates}). Two dimensionless parameters determine the model's behavior:
@@ -323,14 +359,43 @@ We next consider the case in which rock weathers iso-volumetrically to regolith,
 \textrm{Dimensionless weathering rate:} & w' = w\tau \\
 \textrm{Dimensionless disturbance rate:} & d' = d\tau.
 \end{eqnarray*}
-Figures~\ref{fig:dwprofiles} and \ref{fig:angw} illustrate the role of these two parameters for the case of a facet of fixed width. The model shows three behavior regimes. When $w'\gg d'$, gradient depends on the disturbance frequency regardless of weathering rate. In this the transport-limited regime, solutions with $d'\ge 1$ represent angle-of-repose slopes (recall that the model has a 30$^\circ$ effective angle of repose). When $w' < 1$, slope angle depends primarily on $w'$. But even in this weathering-controlled regime, disturbance rate continues to have some influence except in the extreme dissolute-limited case when there is no regolith to move (Figure~\ref{fig:angw}, solid curve and circles).
+Figures~\ref{fig:dwprofiles} and \ref{fig:angw} illustrate the role of these two parameters for the case of a facet of fixed width. The model shows three behavior regimes. When $w'\gg d'$, gradient depends on the disturbance frequency regardless of weathering rate. In this the transport-limited regime, solutions with $d'\le 1$ represent angle-of-repose slopes (recall that the model has a 30$^\circ$ effective angle of repose). Although these angle-of-repose solutions are not inevitable, they occupy a large part of the model's parameter space and could be thought of as a sort of attractor state. When $w' < 1$, slope angle depends primarily on $w'$. But even in this weathering-controlled regime, disturbance rate continues to have some influence, except in the extreme dissolute-limited case when there is no regolith to move (Figure~\ref{fig:angw}, solid curve and circles).
+
+\begin{figure}[ht!]
+\centerline{\includegraphics{Figures/four_by_four_profiles_in_d-w_space.pdf}}
+\caption{Examples of simulated facet profiles at varying values of $d'$ and $w'$. Dotted line shows projected fault plane.}
+\label{fig:dwprofiles}
+\end{figure}
+
+\begin{figure}[ht!]
+\centerline{\includegraphics{Figures/facet_angle_vs_dw.pdf}}
+\caption{Modeled equilibrium facet angle as a function of weathering and disturbance rate parameters. Solid line shows the analytical solution for the case in which no regolith is produced (all rock dissolves), which corresponds to an effectively infinite disturbance rate. Dashed line shows the model's 30$^\circ$ effective angle of repose.}
+\label{fig:angw}
+\end{figure}
+
+The fractional regolith cover depends depends mainly on $w'$ (Figure~\ref{fig:regw}). The relation follows a sigmoid-like curve, with nearly 90\% or greater cover when $w'>20$, and less than 50\% cover when $w'<1$. For a given $w'$, a facet with a higher disturbance rate will tend have a thinner cover, all else equal.
+
+\begin{figure}[ht!]
+\centerline{\includegraphics{Figures/reg_cover_vs_wprime.pdf}}
+\caption{Modeled regolith cover proportion for steady facets, as a function of weathering and disturbance rate parameters. Scatter around the sigmoidal curve reflects stochastic variability.}
+\label{fig:regw}
+\end{figure}
 
 
-
-
-[next look at fig 9, which shows reg cover much more influenced by w than d.]
+[NEXT STEPS: RUN A FULL SUITE OF LONG RUNS IN D-W SPACE TO GAUGE LENGTH EFFECT (PROBABLY PLAYS A ROLE FOR T-LIM BELOW ANGREP, AND PERHAPS ONSET OF ANGREP.]
 
 ...note that angle of repose is kind of an attractor state: any solution with $w'\gg d'$ and $d'\ge 1$ gives you ang rep.
+
+pausing here to ponder this... what's needed to give angrep? In a diss-lim world it's irrelevant but consider anyway what s' you need to get more than angrep:
+\begin{eqnarray*}
+\theta_c = \alpha - s_c' \\
+s_c' = \alpha - \theta = 30^\circ \approx 0.52
+\end{eqnarray*}
+So in principle this would apply to $w'$ too: any less than about 0.5 and it's too steep to be ang rep. Lower $d'$ just makes it worse because the slope is partly covered and weathering rate goes down.
+
+but the above is consistent with the plot at least: solutions with $w'<0.5$ are never tlim/ang rep. The actual cutoff seems to be closer to 1 or 2 as a minimum w'. But you also apparently need $d'\le 1$. Why? Presumably if you have lots of soil but disturb it faster than tectonics pushes it up, erosion ``wins'' and keeps at least parts of the slope below angrep.
+
+note that being on average below angrep doesn't mean lower part isn't angrep. depends on length.
 
 ...then introduce question of colluvial wedges
 
@@ -486,60 +551,6 @@ o illustration with time-varying w and/or d
 % \begin{figure}
 % \end{figure}
 
-
-\begin{figure}[ht!]
-\centerline{\includegraphics{Figures/facet_photos.pdf}}
-\caption{Examples of normal-fault facets. (a) mountain front in Lake Baikal Rift Zone, Russia. (b) Kung Co half graben, Tibet. (c) Hatay Graben, Antakya, Turkey \citep{boulton2009quantifying}. (d) Wasatch fault system, Provo section, near Springville, Utah, USA. (e) west side of Sangre de Cristo range, San Luis Valley, Colorado, USA. (f) Star Valley fault, Wyoming, USA. Note fault trace (light blue dotted line) at base of range front. (g) Magnola fault, central Apennines, Italy. Vegetation break marks approximate location of fault trace. (h) Portion of the Fucino fault near Gioi di Marsi, Italy. Fault trace shown in light blue dotted line. (i) Wasatch fault system, Nephi section, Utah, USA. Fault trace shown in light blue dotted line.}
-\label{fig:facets}
-\end{figure}
-
-\begin{figure}[ht!]
-\centerline{\includegraphics{Figures/facet_schematic.pdf}}
-\caption{Conceptual illustration showing how fault slip rate, $V$, fault dip angle, $\alpha$, and facet erosion rate, $E$, combine to set the dip angle of a facet profile. (Modified from \citet{tucker2011geomorphic}.)} 
-\label{fig:facetschem}
-\end{figure}
-
-\begin{figure}[ht!]
-\centerline{\includegraphics{Figures/facet_plan_and_profile.pdf}}
-\caption{Schematic illustration of model domain, which represents vertical cross-section through an idealized facet and its adjacent colluvial wedge (a--a'). Right side of domain represents the upper edge of facet, and left side represents a longitudinal stream in the hangingwall that removes any debris delivered to it. Changing the position of the cross section (for example, from a--a' to b--b'), and therefore its length, is accomplished by changing the width of the model domain.}
-\label{fig:domainschematic}
-\end{figure}
-
-\begin{figure}[ht!]
-\centerline{\includegraphics[scale=0.7]{Figures/cell_states_and_transitions.pdf}}
-\caption{Illustration of cell states and pairwise transitions in the Grain Facet model. Each cell assigned an integer from 0 to 8 that represents its state (0 is fluid, states 1--6 represent the six directions of motion, state 7 is resting sediment, and state 8 is rock). (Figure modified from \citet{tucker2018lattice}).}
-\label{fig:cellstates}
-\end{figure}
-
-\begin{figure}[ht!]
-\centerline{\includegraphics{Figures/dissolution_model_profiles.pdf}}
-\caption{Simulated facet cross-sectional profiles formed under a combination of fault slip and dissolution. Dark gray indicates rock, and light blue is air. Labels show the dimensionless effective dissolution efficiency, $S'$ (equation~\ref{eq:nddissefficiency}), and the predicted and simulated average facet slope angle, $\theta$. Line shows facet profile predicted by equation (\ref{eq:dissangle}).}
-\label{fig:dissruns}
-\end{figure}
-
-\begin{figure}[ht!]
-\centerline{\includegraphics{Figures/angle_vs_dissolution.pdf}}
-\caption{Difference in angle between fault plane ($\alpha$) and facet ($\theta$), as a function of the nominal dissolution rate $2\delta s$, from runs with fault slip and dissolution (only). Open circles and plusses show individual model runs with a narrow and wide horizontal domain, respectively (see Figure~\ref{fig:dissruns}). Line shows the prediction of equation~\ref{eq:angdif}.}
-\label{fig:angdiss}
-\end{figure}
-
-\begin{figure}[ht!]
-\centerline{\includegraphics{Figures/four_by_four_profiles_in_d-w_space.pdf}}
-\caption{Examples of simulated facet profiles at varying values of $d'$ and $w'$. Dotted line shows projected fault plane.}
-\label{fig:dwprofiles}
-\end{figure}
-
-\begin{figure}[ht!]
-\centerline{\includegraphics{Figures/facet_angle_vs_wprime.pdf}}
-\caption{Modeled equilibrium facet angle as a function of weathering and disturbance rate parameters. Solid line shows the analytical solution for the case in which no regolith is produced (all rock dissolves), which corresponds to an effectively infinite disturbance rate. Dashed line shows the model's 30$^\circ$ effective angle of repose.}
-\label{fig:angw}
-\end{figure}
-
-\begin{figure}[ht!]
-\centerline{\includegraphics{Figures/reg_cover_vs_wprime.pdf}}
-\caption{Modeled regolith cover proportion for steady facets, as a function of weathering and disturbance rate parameters. Scatter around the sigmoidal curve reflects stochastic variability.}
-\label{fig:regw}
-\end{figure}
 
 \begin{figure}[ht!]
 \centerline{\includegraphics{Figures/four_by_four_profiles_colluvial_wedge.pdf}}

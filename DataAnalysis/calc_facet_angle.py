@@ -87,28 +87,26 @@ def fit_zero_intercept_line_to_surface(surface_x, surface_z):
     return dip_angle, S, fit_params
 
 
-def main():
+def main(run_dir, results_basename):
 
     # INITIALIZE
-    # Set parameters/variables
-    run_dir = '../ModelRuns/SADW2/'
-    results_basename = 'slope_analysis'
     
     # Open a file for output of results
     d = datetime.datetime.today()
     today_str = str(d.year) + str(d.month).zfill(2) + str(d.day).zfill(2)
     results_file = open(results_basename + today_str + '.csv', 'w')
     results_file.write('Run name,Disturbance rate parameter,'
-                       + 'Weathering rate parameter,Slope angle,Slope gradient\n')
+                       + 'Weathering rate parameter,Slope angle,'
+                       + 'Slope gradient,Intercept\n')
 
     # RUN
     for d in os.listdir(run_dir):
     
-        # Assume if it starts with 'd' it's a folder containing a run
-        if d[0] == 'd':
+        # Assume if it starts with 'd-' it's a folder containing a run
+        if d[0:2] == 'd-':
             
             # Read the grid
-            g = load_grid(run_dir + d + '/' + d + '.grid')
+            g = load_grid(run_dir + '/' + d + '/' + d + '.grid')
             
             # Get the profile
             (x, z, _) = get_profile_and_soil_thickness(g, g.at_node['node_state'])
@@ -127,11 +125,11 @@ def main():
     
             # Write the results to our file
             line_to_write = (d + ',' + str(dd) + ',' + str(ww) + ','
-                             + str(dip_angle) + ',' + str(S))
+                             + str(dip_angle) + ',' + str(S) + ','
+                             + str(polyparams[1]))
             print(line_to_write)
             results_file.write(line_to_write + '\n')
-    
-    
+
     # FINALIZE
     results_file.close()
 
@@ -139,7 +137,16 @@ def main():
 if __name__ == '__main__':
 
     import doctest
+    import sys
 
     doctest.testmod()
-    main()
+    
+    try:
+        run_dir = sys.argv[1]
+        results_basename = sys.argv[2]
+    except:
+        print('Need run folder and name for results file on the command line')
+        raise
+
+    main(run_dir, results_basename)
 
