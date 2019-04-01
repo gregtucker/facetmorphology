@@ -359,7 +359,9 @@ We next consider the case in which rock weathers iso-volumetrically to regolith,
 \textrm{Dimensionless weathering rate:} & w' = w\tau \\
 \textrm{Dimensionless disturbance rate:} & d' = d\tau.
 \end{eqnarray*}
-Figures~\ref{fig:dwprofiles} and \ref{fig:angw} illustrate the role of these two parameters for the case of a facet of fixed width. The model shows three behavior regimes. When $w'\gg d'$, gradient depends on the disturbance frequency regardless of weathering rate. In this the transport-limited regime, solutions with $d'\le 1$ represent angle-of-repose slopes (recall that the model has a 30$^\circ$ effective angle of repose). Although these angle-of-repose solutions are not inevitable, they occupy a large part of the model's parameter space and could be thought of as a sort of attractor state. When $w' < 1$, slope angle depends primarily on $w'$. But even in this weathering-controlled regime, disturbance rate continues to have some influence, except in the extreme dissolute-limited case when there is no regolith to move (Figure~\ref{fig:angw}, solid curve and circles).
+Figures~\ref{fig:dwprofiles} and \ref{fig:angw} illustrate the role of these two parameters for the case of a facet of fixed width. The model shows three behavior regimes. When $w'\gg d'$, gradient depends on the disturbance frequency regardless of weathering rate. In this the transport-limited regime, solutions with $d'\le 1$ represent angle-of-repose slopes (recall that the model has a 30$^\circ$ effective angle of repose). Although these angle-of-repose solutions are not inevitable, they occupy a large part of the model's parameter space and could be thought of as a sort of attractor state. When $w' < 1$, slope angle depends primarily on $w'$. But even in this weathering-controlled regime, disturbance rate continues to have some influence, except in the extreme dissolute-limited case when there is no regolith to move (Figure~\ref{fig:angw}, solid curve and circles). 
+
+Facet length has very little influence on slope angle (compare Figure~\ref{fig:angw} left and right), except in the case of $d\gg 1$ (star and triangle symbols in Figure~\ref{fig:angw}). Here, longer slopes are systematically steeper.
 
 \begin{figure}[ht!]
 \centerline{\includegraphics{Figures/four_by_four_profiles_in_d-w_space.pdf}}
@@ -382,9 +384,27 @@ The fractional regolith cover depends depends mainly on $w'$ (Figure~\ref{fig:re
 \end{figure}
 
 
-[NEXT STEPS: RUN A FULL SUITE OF LONG RUNS IN D-W SPACE TO GAUGE LENGTH EFFECT (PROBABLY PLAYS A ROLE FOR T-LIM BELOW ANGREP, AND PERHAPS ONSET OF ANGREP.]
+\subsection{Colluvial Wedges}
 
-...note that angle of repose is kind of an attractor state: any solution with $w'\gg d'$ and $d'\ge 1$ gives you ang rep.
+We explore the formation of colluvial wedges with a series of model runs similar to those in Figure~\ref{fig:dwprofiles} but with the fault location shifted to the right (Figure~\ref{fig:colluv}). This geometry places the baselevel outboard of the fault trace, thereby allowing the creation of a colluvial wedge between the fault and baselevel. In the angle-of-repose regime, with $w'>1$ and $d'\le 1$, the wedge shares the same slope gradient as the facet itself, so that the fault trace appears partway up the facet slope (Figure~\ref{fig:colluv}, upper left). Solutions with a lower $w'$ ... [GET SLOPE BREAK WHEN W' LOW, BASICALLY]
+
+[ALSO ADD COMMENT ABOVE ABOUT CURVATURE]
+
+\begin{figure}[ht!]
+\centerline{\includegraphics{Figures/four_by_four_profiles_colluvial_wedge.pdf}}
+\caption{Simulated facet profiles showing the development of a colluvial wedge on the hangingwall.}
+\label{fig:colluv}
+\end{figure}
+
+
+...then introduce question of colluvial wedges
+
+...then step back and consider whether we've covered it all up to here
+
+
+
+
+\section*{NOTES}
 
 pausing here to ponder this... what's needed to give angrep? In a diss-lim world it's irrelevant but consider anyway what s' you need to get more than angrep:
 \begin{eqnarray*}
@@ -396,11 +416,6 @@ So in principle this would apply to $w'$ too: any less than about 0.5 and it's t
 but the above is consistent with the plot at least: solutions with $w'<0.5$ are never tlim/ang rep. The actual cutoff seems to be closer to 1 or 2 as a minimum w'. But you also apparently need $d'\le 1$. Why? Presumably if you have lots of soil but disturb it faster than tectonics pushes it up, erosion ``wins'' and keeps at least parts of the slope below angrep.
 
 note that being on average below angrep doesn't mean lower part isn't angrep. depends on length.
-
-...then introduce question of colluvial wedges
-
-...then step back and consider whether we've covered it all up to here
-
 
 
 
@@ -551,12 +566,6 @@ o illustration with time-varying w and/or d
 % \begin{figure}
 % \end{figure}
 
-
-\begin{figure}[ht!]
-\centerline{\includegraphics{Figures/four_by_four_profiles_colluvial_wedge.pdf}}
-\caption{Simulated facet profiles showing the development of a colluvial wedge on the hangingwall.}
-\label{fig:colluv}
-\end{figure}
 
 \begin{figure}[ht!]
 \centerline{\includegraphics{Figures/four_by_four_profiles_baselevel_rise.pdf}}
