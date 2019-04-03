@@ -240,7 +240,7 @@ The aim in this paper is to explore the sculpting of facet cross-sectional profi
 
 \section{Background}
 
-Facets have intrigued geologists since at least the late 19th century, %when exploration of the western United States revealed the basin and range 
+Fault scarps and facets have intrigued geologists since at least the late 19th century, %when exploration of the western United States revealed the basin and range 
 when early survey expeditions of the American west (and, later, railroad construction) provided access to the spectacular terrain of the Basin and Range physiographic providence. Among the first published remarks and illustrations on facet geomorphology in the western USA were those of \citet{davis1903mountain,davis1909geographical}. Both he and \citet{gilbert1928studies} viewed facets as exhumed fault planes, with only minor modification by erosion. 
 Later workers, however, noted a discrepancy between the dip angle of facets and of the fault planes beneath. Where facets often dip between 20$^\circ$ and 35$^\circ$ \citep{davis1903mountain,davis1909geographical,pack1926new,blackwelder1928recognition,gilluly1928basin,fuller1931geomorphology,anderson1977compound,wallace1978geometry,menges1990soils,petit2009faceted,wilkinson2015slip}, the bedrock fault planes below commonly form angles of 60$^\circ$ to 70$^\circ$ with respect to the horizontal \citep{schneider1925discussion,pack1926new,blackwelder1928recognition,gilluly1928basin,fuller1931geomorphology,wallace1978geometry,wilkinson2015slip}. The difference in dip between a normal fault plane and the facets above it implies that facets, despite their often strikingly planar form, are erosionally modified features \citep{pack1926new,gilluly1928basin}. \citet{gilluly1928basin}, in his work on the Oquirrh Range (Utah, USA), pointed out an interesting implication of this erosional modification: ``as the dip of the fault averages more than 60 degrees along this part of the range front, a wedge having an apical angle of 30 to 40 degrees has evidently been removed from each facet.'' In other words, because the tip of a facet gets exposed to erosion earlier than the base, it undergoes more cumulative erosion. In this sense, the tip of a facet may be considered ``geomorphically older'' than the base \citep{gilbert1928studies,wallace1978geometry,menges1990soils}.
 
@@ -270,9 +270,13 @@ Numerical models of extensional mountain range evolution can reproduce classic l
 
 \section{Approach and Scope}
 
-We view normal-fault facets as unique natural experiments: slopes that are born as steep, seismo-tectonic fault scarps, and undergo progressive weathering and erosion as they are translated upward and away from the fault trace. We use a process-oriented cellular automaton model of facet cross-section evolution as an interpretive tool with which to address the following questions: can the model that combines rock weathering with disturbance-driven soil creep account for the observed range in facet angle, regolith cover fraction, shape, and colluvial wedge angle? If so, what are the primary controlling factors? Does the model imply a systematic relationship between facet angle and erosion rate, and if so what does that relationship look like? The answer to this last question is especially important, because it sets up a testable prediction: facet angle is easy to measure, and erosion rate can in principle be obtained either through the geometric method summarized in Figure~\ref{fig:facetschem} (if fault slip rate is known), or by techniques such as cosmogenic nuclide analysis.
+We view normal-fault facets as unique natural experiments: slopes that are born as steep, seismo-tectonic fault scarps, and undergo progressive weathering and erosion as they are translated upward and away from the fault trace. We use a process-oriented cellular automaton model of facet cross-section evolution as an interpretive tool with which to address the following questions: can a model that combines rock weathering with disturbance-driven soil creep account for the observed range in facet angle, regolith cover fraction, shape, and colluvial wedge angle? If so, what are the primary controlling factors? Does the model imply a systematic relationship between facet angle and erosion rate, and if so what does that relationship look like? The answer to this last question is especially important, because it sets up a testable prediction: facet angle is easy to measure, and erosion rate can in principle be obtained either through the geometric method summarized in Figure~\ref{fig:facetschem} (if fault slip rate is known), or by techniques such as cosmogenic nuclide analysis.
 
 Our focus is on the cross-sectional geometry of facets, rather than their full three-dimensional (3D) form; in other words, our interest is not in explaining why facets are often triangular (which seems to be well understood), but rather in understanding what sets their gradient, shape, and regolith cover. That said, the influence of facet length---the distance between the fault trace and the facet's upper edge at a particular cross-sectional position---is considered by comparing models with varying domain length, as described below. We do not consider controls on the height of the facet edge, as this clearly depends in part on the spacing between transverse channels, and on the topography of valley side slopes along them.
+
+[NOTE WE DON'T CONSIDER INCISED FACETS, OR THOSE ON WHICH INCISION-LIKE PROCESSES AND CONCENTRATED FLOW PLAY A MAJOR ROLE]
+
+[ALSO SAY STHING ABOUT WHAT WE MEAN BY FACET: BASICALLY, FAULT SCARP FACING BASINWARD AND UNMODIFIED BY INCISION]
 
 A cellular automaton model might seem like an odd choice for modeling the evolution of an idealized hillslope cross section. After all, most models of hillslope cross-sectional morphology are built on differential equations, which are sometimes viewed as ``the keys to geomorphic nirvana'' \citep{bras2003six}. In this case, however, it is the only model we know of that can account for a both smooth, soil-mantled slopes, and steep, irregular, rocky ones---and the transition between these forms \citep{tucker2018lattice}. Moreover, the cellular framework allows a fully two-dimensional representation (as opposed to the more common profile representation, in which surface elevation is a function of one independent spatial dimension), and it provides a natural way to treat combined vertical and horizontal tectonic offset. Finally, the cellular approach described below (and in greater detail by \citet{tucker2018lattice}) honors the occurrence of a patchy or otherwise incomplete regolith cover, as is observed on some facet surfaces.
 
@@ -361,7 +365,9 @@ We next consider the case in which rock weathers iso-volumetrically to regolith,
 \end{eqnarray*}
 Figures~\ref{fig:dwprofiles} and \ref{fig:angw} illustrate the role of these two parameters for the case of a facet of fixed width. The model shows three behavior regimes. When $w'\gg d'$, gradient depends on the disturbance frequency regardless of weathering rate. In this the transport-limited regime, solutions with $d'\le 1$ represent angle-of-repose slopes (recall that the model has a 30$^\circ$ effective angle of repose). Although these angle-of-repose solutions are not inevitable, they occupy a large part of the model's parameter space and could be thought of as a sort of attractor state. When $w' < 1$, slope angle depends primarily on $w'$. But even in this weathering-controlled regime, disturbance rate continues to have some influence, except in the extreme dissolute-limited case when there is no regolith to move (Figure~\ref{fig:angw}, solid curve and circles). 
 
-Facet length has very little influence on slope angle (compare Figure~\ref{fig:angw} left and right), except in the case of $d\gg 1$ (star and triangle symbols in Figure~\ref{fig:angw}). Here, longer slopes are systematically steeper.
+Facet shape depends on both $w'$ and $d'$. With sufficiently effective weathering and transport, represented by the parameter space $w'>1$ and $d'>1$, the model produces somewhat convex-upward facets (Figure~\ref{fig:dwprofiles}, upper right). If either of these parameters is less than unity, the model generates planar facets.
+
+Facet length has very little influence on slope angle (compare Figure~\ref{fig:angw} left and right), except in the case of $d'\gg 1$ (star and triangle symbols in Figure~\ref{fig:angw}). Here, longer slopes are systematically steeper.
 
 \begin{figure}[ht!]
 \centerline{\includegraphics{Figures/four_by_four_profiles_in_d-w_space.pdf}}
@@ -386,9 +392,7 @@ The fractional regolith cover depends depends mainly on $w'$ (Figure~\ref{fig:re
 
 \subsection{Colluvial Wedges}
 
-We explore the formation of colluvial wedges with a series of model runs similar to those in Figure~\ref{fig:dwprofiles} but with the fault location shifted to the right (Figure~\ref{fig:colluv}). This geometry places the baselevel outboard of the fault trace, thereby allowing the creation of a colluvial wedge between the fault and baselevel. In the angle-of-repose regime, with $w'>1$ and $d'\le 1$, the wedge shares the same slope gradient as the facet itself, so that the fault trace appears partway up the facet slope (Figure~\ref{fig:colluv}, upper left). Solutions with a lower $w'$ ... [GET SLOPE BREAK WHEN W' LOW, BASICALLY]
-
-[ALSO ADD COMMENT ABOVE ABOUT CURVATURE]
+We explore the formation of colluvial wedges with a series of model runs similar to those in Figure~\ref{fig:dwprofiles} but with the fault location shifted to the right (Figure~\ref{fig:colluv}). This geometry places the baselevel outboard of the fault trace, thereby allowing the creation of a colluvial wedge between the fault and baselevel. In the angle-of-repose regime, with $w'>1$ and $d'\le 1$, the wedge shares the same slope gradient as the facet itself, so that the fault trace appears partway up the facet slope (Figure~\ref{fig:colluv}, upper left). Solutions with $w'<1$ and $d'<1$ generate slope breaks because the bedrock facet rises more steeply than the angle-of-repose colluvial wedge (Figure~\ref{fig:colluv}, lower left). With $w'<1$ and $d' > 1$, sediment transport becomes efficient enough that the wedge slope is less than the angle of repose  (Figure~\ref{fig:colluv}, lower right). Solutions with $w' \approx 1$ and $d'>1$ produce a relatively muted slope break in which both the facet and the wedge lie below the stability angle.
 
 \begin{figure}[ht!]
 \centerline{\includegraphics{Figures/four_by_four_profiles_colluvial_wedge.pdf}}
@@ -396,11 +400,19 @@ We explore the formation of colluvial wedges with a series of model runs similar
 \label{fig:colluv}
 \end{figure}
 
-
-...then introduce question of colluvial wedges
+[ADD SECTION ON BASELEVEL RISE]
 
 ...then step back and consider whether we've covered it all up to here
 
+Have we answered these:
+
+can a model that combines rock weathering with disturbance-driven soil creep account for the observed range in facet angle, regolith cover fraction, shape, and colluvial wedge angle? If so, what are the primary controlling factors? 
+
+yes: runs show variation in angle, reg cover, shape, and colluv angle. all are controlled by two dimensionless params.
+
+Does the model imply a systematic relationship between facet angle and erosion rate, and if so what does that relationship look like? 
+
+not yet, or at least not directly... need to plot data in a different way for that. in a sense one could simply plot angle vs $1/w'$, because that then is effectively a dimensionless slip rate. the problem is that the erosion rate IS the angle, or at least proportional, so where do $w'$ and $d'$ come in? i suppose one could use the fact that at steady state the vertical erosion rate is just $V \cos \alpha$. and define a dimensionless vertical erosion rate $(V/w) \cos \alpha$. then plot facet angle against this... [THINK ABOUT THIS MORE: IS THERE A BETTER WAY? problem of course is that the dimensional erosion rate is the same for all, it's just the dimensionless version that varies. Basically, we have 4 dimensional parameters, $V$ (or $\tau$), $d$, $w$, and $\delta$, so two groups, and our (dimensionless) outcome, $\theta$, is a function of those two.]
 
 
 
