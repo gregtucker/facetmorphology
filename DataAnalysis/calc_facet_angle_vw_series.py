@@ -12,6 +12,7 @@ import datetime
 import numpy as np
 
 
+
 # FUNCTIONS
 
 def get_profile_and_soil_thickness(grid, node_state):
@@ -87,6 +88,53 @@ def fit_zero_intercept_line_to_surface(surface_x, surface_z):
     return dip_angle, S, fit_params
 
 
+def upper_row_nodes(grid):
+    """Return IDs of nodes in upper interior row (next to top).
+    
+    Examples
+    --------
+    >>> from landlab import HexModelGrid
+    >>> grid = HexModelGrid(3, 5, shape='rect', orientation='vert')
+    >>> list(upper_row_nodes(grid))
+    [5, 6, 7, 8, 9]
+    """
+    return (np.arange(grid.number_of_node_columns)
+            + (grid.number_of_node_rows - 2) * grid.number_of_node_columns)
+
+
+def calc_length_of_footwall_at_upper_boundary(grid):
+    """Calculate and return length over which footwall touches upper edge.
+    
+    Length is in cells.
+    
+    Examples
+    --------
+    >>> from grainhill import GrainHill
+    >>> import numpy as np
+    >>> gh = GrainHill((3, 5), show_plots=False)
+    >>> gh.ca.node_state[:] = 0
+    >>> calc_length_of_footwall_at_upper_boundary(gh.grid)
+    0.0
+    >>> gh.ca.node_state[9] = 8
+    >>> int(1000 * calc_length_of_footwall_at_upper_boundary(gh.grid))
+    866
+    >>> gh.ca.node_state[6] = 8
+    >>> int(1000 * calc_length_of_footwall_at_upper_boundary(gh.grid))
+    1732
+    >>> gh.ca.node_state[8] = 8
+    >>> int(1000 * calc_length_of_footwall_at_upper_boundary(gh.grid))
+    2598
+    """
+    upper_row = upper_row_nodes(grid)
+    ns = grid.at_node['node_state']
+    fw_top_bnd = upper_row[ns[upper_row] > 0]
+    if len(fw_top_bnd > 0):
+        fw_len = np.amax(grid.x_of_node - np.amin(grid.x_of_node[fw_top_bnd]))
+    else:
+        fw_len = 0.0
+    return fw_len
+
+
 def main(run_dir, results_basename):
 
     # INITIALIZE
@@ -98,7 +146,8 @@ def main(run_dir, results_basename):
     results_file.write('Run name,Slip interval,'
                        + 'Weathering rate parameter,Slope angle,'
                        + 'Slope gradient,Intercept,'
-                       + 'Height of right column\n')
+                       + 'Height of right column,'
+                       + 'Footwall upper bound length ratio\n')
 
     # RUN
     for d in os.listdir(run_dir):
@@ -116,6 +165,11 @@ def main(run_dir, results_basename):
             polyparams = np.polyfit(x, z, 1)
             S = np.abs(polyparams[0])
             dip_angle = np.arctan(S)*180./np.pi
+            
+            # Get the relative length of the footwall's contact with the
+            # upper boundary
+            fw_len = calc_length_of_footwall_at_upper_boundary(g)
+            len_ratio = fw_len / np.amax(g.x_of_node)
 
             # Figure out the weathering rate and uplift interval from run name
             f = d.find('w')
@@ -126,7 +180,7 @@ def main(run_dir, results_basename):
             line_to_write = (d + ',' + str(tau) + ',' + str(ww)
                               + ',' + str(dip_angle) + ',' + str(S) + ','
                              + str(polyparams[1]) + ',' + str(z[-2]) + ','
-                             + str(z[-2]))
+                             + str(len_ratio))
             print(line_to_write)
             results_file.write(line_to_write + '\n')
 
