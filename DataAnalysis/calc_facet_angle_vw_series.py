@@ -104,9 +104,21 @@ def upper_row_nodes(grid):
 
 def calc_length_of_footwall_at_upper_boundary(grid):
     """Calculate and return length over which footwall touches upper edge.
-    
+
     Length is in cells.
-    
+
+    Notes
+    -----
+    We apply a small geometric correction, derived as follows. Assume the top
+    grid edge is 110 grid units above the fault trace. Then, 110 tan 30o equals
+    the horizontal distance from left side to fault plane intercept with
+    the top edge: ~63.509. The grid width (from middle of left cells to middle
+    of right cells) is 80 * (1/2) * sqrt(3) = ~69.282. The difference is
+    ~5.7735. Meanwhile, in the discretized grid, when there is no erosion at
+    the top, the length is calculated as ~6.0622. This reflects a 
+    grid-resolution-induced error, which we correct by simply applying the
+    difference: 0.2887.
+
     Examples
     --------
     >>> from grainhill import GrainHill
@@ -117,23 +129,107 @@ def calc_length_of_footwall_at_upper_boundary(grid):
     0.0
     >>> gh.ca.node_state[9] = 8
     >>> int(1000 * calc_length_of_footwall_at_upper_boundary(gh.grid))
-    866
+    577
     >>> gh.ca.node_state[6] = 8
     >>> int(1000 * calc_length_of_footwall_at_upper_boundary(gh.grid))
-    1732
+    1443
     >>> gh.ca.node_state[8] = 8
     >>> int(1000 * calc_length_of_footwall_at_upper_boundary(gh.grid))
-    2598
+    2309
     """
     upper_row = upper_row_nodes(grid)
     ns = grid.at_node['node_state']
     fw_top_bnd = upper_row[ns[upper_row] > 0]
     if len(fw_top_bnd > 0):
         fw_len = np.amax(grid.x_of_node - np.amin(grid.x_of_node[fw_top_bnd]))
+        fw_len -= 0.2887  # geometric correction
+        fw_len = max(fw_len, 0.0)
     else:
         fw_len = 0.0
     return fw_len
 
+
+def count_solid_cells_per_inner_column(grid):
+    """Returns number of rock or regolith cells per column.
+    
+    Examples
+    --------
+    >>> from landlab import HexModelGrid
+    >>> grid = HexModelGrid(shape=(5, 5), node_layout='rect',
+    ...                     orientation='vert')
+    >>> ns = grid.add_zeros('node', 'node_state', dtype=np.int)
+    >>> ns[:5] = 1
+    >>> ns[6:10] = 1
+    >>> ns[11:13] = 1
+    >>> ns[14] = 1
+    >>> ns[16:18] = 1
+    >>> ns[19] = 1
+    >>> ns[22] = 1
+    >>> ns[24] = 1
+    >>> list(count_solid_cells_per_inner_column(grid))
+    [1, 3, 3]
+    """
+    ns = grid.at_node['node_state']
+    num_solid = np.zeros(grid.number_of_node_columns - 2, dtype=np.int)
+    for n in range(grid.number_of_nodes):
+        if not grid.node_is_boundary(n):
+            (r, c) = grid.node_row_and_column(n)
+            if ns[n] != 0:
+                num_solid[c-1] += 1
+    return num_solid
+
+
+def max_solid_cells_per_inner_column(num_cols):
+    """Return number of solid cells in each column if there were no erosion.
+    
+    Examples
+    --------
+    >>> list(max_solid_cells_per_inner_column(7))
+    [2, 4, 5, 7, 8]
+    """
+    return np.ceil(0.5 + 1.5 * np.arange(1, num_cols - 1)).astype(int)
+
+
+def calc_ero_rate_from_topo(grid, delta, tau):
+    """Calculate the average erosion rate from the topography.
+
+    Notes
+    -----
+    The erosion rate is averaged over each column in the grid. For each column,
+    the cumulative erosion depth in cells equals the difference between the
+    number of rock/soil cells that would be present if there were no erosion,
+    and the number actually present. (The number could be positive, if there
+    were deposition). To do this, we need two numbers: the height of the column
+    without erosion, and the duration that the column has been exposed to
+    erosion.
+        The first number comes from geometry. Let the fault be a 60o-dipping
+    feature that crosses point (Xf0, 0), where Xf0 is the x-coordinate of the
+    fault's zero intercept. Let Xc denote the x-coordinate of the column
+    center. The height of the fault plane is then Yf = Xc tan 60.
+    
+    Examples
+    --------
+    >>> from landlab import HexModelGrid
+    >>> grid = HexModelGrid(shape=(5, 5), node_layout='rect',
+    ...                     orientation='vert')
+    >>> ns = grid.add_zeros('node', 'node_state', dtype=np.int)
+    >>> calc_ero_rate_from_topo(grid, 1.0, 100.0)
+    0.015
+    >>> ns[:5] = 1
+    >>> ns[6:10] = 1
+    >>> ns[11:13] = 1
+    >>> ns[14] = 1
+    >>> ns[16:18] = 1
+    >>> ns[19] = 1
+    >>> ns[22] = 1
+    >>> ns[24] = 1
+    >>> calc_ero_rate_from_topo(grid, 100.0)
+    0.0
+    """
+    nsolmax = max_solid_cells_per_inner_column(grid.number_of_node_columns)
+    nsol = count_solid_cells_per_inner_column(grid)
+    #TODO: FROM HERE, TAKE DIFFERENCE IN COLUMNS 2-MAX, WHERE MAX IS THE LAST
+    #INNER COLUMN WITH AT LEAST ONE AIR CELL
 
 def main(run_dir, results_basename):
 

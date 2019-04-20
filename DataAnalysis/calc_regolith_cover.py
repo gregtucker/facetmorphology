@@ -39,9 +39,9 @@ def calc_rock_and_regolith(grid):
     >>> ns[15:17]= 8
     >>> p = calc_rock_and_regolith(hg)
     >>> round(100 * p[0])
-    22.0
+    22
     >>> round(100 * p[1])
-    78.0
+    78
     >>> p[2]
     2
     >>> p[3]
