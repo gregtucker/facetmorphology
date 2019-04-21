@@ -152,6 +152,9 @@ def calc_length_of_footwall_at_upper_boundary(grid):
 def count_solid_cells_per_inner_column(grid):
     """Returns number of rock or regolith cells per column.
     
+    Also returns the number of the right-most inner column that contains at
+    least one air cell.
+    
     Examples
     --------
     >>> from landlab import HexModelGrid
@@ -166,17 +169,23 @@ def count_solid_cells_per_inner_column(grid):
     >>> ns[19] = 1
     >>> ns[22] = 1
     >>> ns[24] = 1
-    >>> list(count_solid_cells_per_inner_column(grid))
+    >>> (nsol, last_col) = count_solid_cells_per_inner_column(grid)
+    >>> list(nsol)
     [1, 3, 3]
+    >>> last_col
+    1
     """
     ns = grid.at_node['node_state']
     num_solid = np.zeros(grid.number_of_node_columns - 2, dtype=np.int)
+    last_col_with_air = 0
     for n in range(grid.number_of_nodes):
         if not grid.node_is_boundary(n):
             (r, c) = grid.node_row_and_column(n)
             if ns[n] != 0:
                 num_solid[c-1] += 1
-    return num_solid
+            elif c > last_col_with_air:
+                last_col_with_air = c
+    return (num_solid, last_col_with_air)
 
 
 def max_solid_cells_per_inner_column(num_cols):
@@ -185,9 +194,9 @@ def max_solid_cells_per_inner_column(num_cols):
     Examples
     --------
     >>> list(max_solid_cells_per_inner_column(7))
-    [2, 4, 5, 7, 8]
+    [1, 3, 4, 6, 7]
     """
-    return np.ceil(0.5 + 1.5 * np.arange(1, num_cols - 1)).astype(int)
+    return np.ceil(0.5 + 1.5 * np.arange(1, num_cols - 1)).astype(int) - 1
 
 
 def calc_ero_rate_from_topo(grid, delta, tau):
@@ -210,26 +219,43 @@ def calc_ero_rate_from_topo(grid, delta, tau):
     Examples
     --------
     >>> from landlab import HexModelGrid
-    >>> grid = HexModelGrid(shape=(5, 5), node_layout='rect',
+    >>> grid = HexModelGrid(shape=(8, 7), node_layout='rect',
     ...                     orientation='vert')
     >>> ns = grid.add_zeros('node', 'node_state', dtype=np.int)
     >>> calc_ero_rate_from_topo(grid, 1.0, 100.0)
+    >>> list(ero_col)
+    [0.015, 0.015, 0.015]
+    >>> ero_mean
     0.015
-    >>> ns[:5] = 1
-    >>> ns[6:10] = 1
-    >>> ns[11:13] = 1
+    >>> ns[:6] = 1
+    >>> ns[8:14] = 1
+    >>> ns[15:18] = 1
     >>> ns[14] = 1
-    >>> ns[16:18] = 1
-    >>> ns[19] = 1
-    >>> ns[22] = 1
-    >>> ns[24] = 1
-    >>> calc_ero_rate_from_topo(grid, 100.0)
+    >>> ns[19:21] = 1
+    >>> ns[22:25] = 1
+    >>> ns[26:28] = 1
+    >>> ns[30:32] = 1
+    >>> ns[33:35] = 1
+    >>> ns[37:39] = 1
+    >>> ns[41] = 1
+    >>> ns[44:46] = 1
+    >>> ns[48] = 1
+    >>> ns[52] = 1
+    >>> ns[55] = 1
+    >>> (ero_col, ero_mean) = calc_ero_rate_from_topo(grid, 100.0)
+    >>> (ero_col, ero_mean)
     0.0
     """
     nsolmax = max_solid_cells_per_inner_column(grid.number_of_node_columns)
-    nsol = count_solid_cells_per_inner_column(grid)
-    #TODO: FROM HERE, TAKE DIFFERENCE IN COLUMNS 2-MAX, WHERE MAX IS THE LAST
-    #INNER COLUMN WITH AT LEAST ONE AIR CELL
+    (nsol, last_col) = count_solid_cells_per_inner_column(grid)
+    eroded_cells = nsolmax[1:last_col+1] - nsol[1:last_col+1]
+    ero_duration = tau * np.arange(2, last_col + 1)
+    #ero_rate_per_col = delta * eroded_cells / ero_duration
+    return eroded_cells  # temporary, for test
+    #return np.mean(ero_rate_per_col, ero_rate_per_col)
+    #TODO: WE SHOULD NOT BE INCLUDING COLUMNS WHERE THE FAULT TRACE LIES ABOVE
+    #THE TOP OF (INNER) COLUMN.
+
 
 def main(run_dir, results_basename):
 
