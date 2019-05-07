@@ -250,16 +250,16 @@ Facets show a wide diversity in morphology. Although the dip angles of many face
 
 The diversity in facet morphology raises the question of whether facets may encode useful information about tectonic processes, as several studies have suggested. \citet{hamblin1976patterns} and \citet{anderson1977compound} identified flights of facet-like surface the Wasatch Front (Utah, USA) separated by bench-like spurs, and interpreted these as reflecting alternating episodes of rapid slip and tectonic quiescence. \citet{menges1990soils} noted that facets along the southern Sangre de Cristo Range tend to be steeper and taller toward the middle of fault segments, as opposed to zones of overlap between adjacent segments. \citet{depolo2000estimating} compiled morphologic data on 45 faults with independent slip-rate estimates in the arid to semi-arid environment of the Great Basin, USA. Faults with a slip rate in excess of a few 10s of microns per year were associated with facets, and among these, \citet{depolo2000estimating} demonstrated a correlation between slip rate and facet height. In a study of facets along four segments of the Wasatch fault system, \citet{zuchiewicz2000geometry} noted multiple potential controls on facet geometry, including lithology, but considered slip rate to be the primary control. In laboratory experiments by \citet{strak2011interaction}, facet angle increased with slip rate up to a limiting threshold angle. By contrast, \citet{densmore1998landsliding} and \citet{ellis1999development} suggested on the basis of numerical model experiments that facet erosion might be controlled chiefly by bedrock landsliding, such that facet angle represents a threshold angle for stability that does not correlate with slip rate.
 
-If facets take shape through a collaboration between tectonics and erosion, then it stands to reason that their morphology might also encode useful information about rates of geomorphic processes. \citet{menges1990soils} noted, for example, that the degree of soil development generally increases upslope on facets along the southern Sangre de Cristo Range. Using a simple geometric model, \citet{tucker2011geomorphic} noted that the difference in dip angle between a facet and its basal fault---in other words, the apical angle of Gilluly's wedge of missing rock---could be related quantitatively to the ratio of the rates of fault slip and facet erosion, according to:
+If facets take shape through a collaboration between tectonics and erosion, then it stands to reason that their morphology might also encode useful information about rates of geomorphic processes. \citet{menges1990soils} noted, for example, that the degree of soil development generally increases upslope on facets along the southern Sangre de Cristo Range. Using a simple geometric model, \citet{tucker2011geomorphic} noted that the difference in dip angle between a facet and its basal fault---in other words, the apical angle of Gilluly's wedge of missing rock---could be related quantitatively to the ratio of the rates of fault slip and facet erosion. Expressed in terms of surface-normal erosion rate $E_n$ (as opposed to the arc-wise vector used in the original paper), the relation is:
 \begin{equation}
-\beta = \alpha - \theta = E / V,
+\sin \beta = \sin ( \alpha - \theta ) = E_n / V,
 \label{eq:predangle}
 \end{equation}
-where $\alpha$ is the fault dip angle, $\theta$ is the facet dip angle, $E$ is the slope-normal facet erosion rate, and $V$ is the fault slip rate. The concept is illustrated in Figure~\ref{fig:facetschem}. One implication of the geometry illustrated in Figure~\ref{fig:facetschem} is that if one knew the fault slip rate and the fault dip, one could estimate the erosion rate (averaged over the age of the facet). Conversely, independent knowledge of the erosion rate would allow estimation of the slip rate.
+where $\alpha$ is the fault dip angle, $\theta$ is the facet dip angle, and $V$ is the fault slip rate. The concept is illustrated in Figure~\ref{fig:facetschem}. One implication of the geometry illustrated in Figure~\ref{fig:facetschem} is that if one knew the fault slip rate and the fault dip, one could estimate the erosion rate (averaged over the age of the facet). Conversely, independent knowledge of the erosion rate would allow estimation of the slip rate.
 
 \begin{figure}[ht!]
 \centerline{\includegraphics{Figures/facet_schematic.pdf}}
-\caption{Conceptual illustration showing how fault slip rate, $V$, fault dip angle, $\alpha$, and facet erosion rate, $E$, combine to set the dip angle of a facet profile. (Modified from \citet{tucker2011geomorphic}.)} 
+\caption{Conceptual illustration showing how fault slip rate, $V$, fault dip angle, $\alpha$, and slope-normal erosion rate, $E_n$, combine to set the dip angle of a facet profile. (Modified from \citet{tucker2011geomorphic}.)} 
 \label{fig:facetschem}
 \end{figure}
 
@@ -339,7 +339,7 @@ S' = \frac{2\delta s}{V}.
 \end{equation}
 The expected facet dip angle is
 \begin{equation}
-\theta = \alpha - S',
+\theta = \alpha - \sin^{-1} S',
 \label{eq:dissangle}
 \end{equation}
 where $\theta$ and $\alpha$ are both in radians. Figure~\ref{fig:dissruns} presents simulated profiles for facets eroded by dissolution, under different values of dimensionless weathering rate $S'$. The figure also compares narrow and wide facets. The simulated facets show a linear relation between angle and dissolution rate, consistent with the analytical expectation (equation~\ref{eq:predangle}) (Figure~\ref{fig:angdiss}). As expected, there is no apparent relation between slope angle and the width of the cross section.
@@ -414,6 +414,13 @@ To explore how baselevel rise might influence facet evolution, we performed a se
 \end{figure}
 
 
+TODO: 
+
+- UPDATE FACET SCHEMATIC TO USE SIN AND SLOPE-NORMAL
+
+- UPDATE CALCS AND FIGURES OF DISS-LIM 
+
+- UPDATE PLOT OF W-D WITH CORRECT DISS-LIM CURVE
 
 
 ...then step back and consider whether we've covered it all up to here

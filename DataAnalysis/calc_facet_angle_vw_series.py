@@ -17,12 +17,12 @@ import numpy as np
 
 def get_profile_and_soil_thickness(grid, node_state):
     """Calculate and return profiles of elevation and soil thickness.
-    
+
     Examples
     --------
     >>> from landlab import HexModelGrid
     >>> import numpy as np
-    >>> hg = HexModelGrid(4, 6, orientation='vert', shape='rect')
+    >>> hg = HexModelGrid(4, 6, orientation='vert', node_layout='rect')
     >>> ns = hg.add_zeros('node', 'node_state', dtype=int)
     >>> ns[:18] = np.array([8, 8, 8, 8, 8, 8, 0, 7, 8, 0, 7, 8, 0, 0, 7, 0, 0, 7])
     >>> x, z, h = get_profile_and_soil_thickness(hg, ns)
@@ -94,7 +94,7 @@ def upper_row_nodes(grid):
     Examples
     --------
     >>> from landlab import HexModelGrid
-    >>> grid = HexModelGrid(3, 5, shape='rect', orientation='vert')
+    >>> grid = HexModelGrid(3, 5, node_layout='rect', orientation='vert')
     >>> list(upper_row_nodes(grid))
     [5, 6, 7, 8, 9]
     """
@@ -194,9 +194,9 @@ def max_solid_cells_per_inner_column(num_cols):
     Examples
     --------
     >>> list(max_solid_cells_per_inner_column(7))
-    [1, 3, 4, 6, 7]
+    [1.0, 3.0, 4.0, 6.0, 7.0]
     """
-    return np.ceil(0.5 + 1.5 * np.arange(1, num_cols - 1)).astype(int) - 1
+    return np.ceil(0.5 + 1.5 * np.arange(1, num_cols - 1)) - 1
 
 
 def calc_ero_rate_from_topo(grid, delta, tau):
@@ -222,17 +222,22 @@ def calc_ero_rate_from_topo(grid, delta, tau):
     >>> grid = HexModelGrid(shape=(8, 7), node_layout='rect',
     ...                     orientation='vert')
     >>> ns = grid.add_zeros('node', 'node_state', dtype=np.int)
-    >>> calc_ero_rate_from_topo(grid, 1.0, 100.0)
-    >>> list(ero_col)
-    [0.015, 0.015, 0.015]
+    >>> (ero_mean, ero_col) = calc_ero_rate_from_topo(grid, 1.0, 100.0)
+    >>> int(1000 * ero_mean)
+    15
+    >>> ns[:7] = 1
+    >>> ns[8:11] = 1
+    >>> ns[12:14] = 1
+    >>> ns[16:18] = 1
+    >>> ns[20] = 1
+    >>> ns[24] = 1
+    >>> (ero_mean, ero_col) = calc_ero_rate_from_topo(grid, 1.0, 100.0)
     >>> ero_mean
-    0.015
-    >>> ns[:6] = 1
-    >>> ns[8:14] = 1
-    >>> ns[15:18] = 1
-    >>> ns[14] = 1
-    >>> ns[19:21] = 1
-    >>> ns[22:25] = 1
+    0.01
+    >>> ns[11] = 1
+    >>> ns[15] = 1
+    >>> ns[19] = 1
+    >>> ns[22:24] = 1
     >>> ns[26:28] = 1
     >>> ns[30:32] = 1
     >>> ns[33:35] = 1
@@ -242,19 +247,19 @@ def calc_ero_rate_from_topo(grid, delta, tau):
     >>> ns[48] = 1
     >>> ns[52] = 1
     >>> ns[55] = 1
-    >>> (ero_col, ero_mean) = calc_ero_rate_from_topo(grid, 100.0)
-    >>> (ero_col, ero_mean)
+    >>> (ero_mean, ero_col) = calc_ero_rate_from_topo(grid, 1.0, 100.0)
+    >>> ero_mean
     0.0
     """
+    #TODO: WHY DOESN'T THE 30 DEG CASE WORK?
     nsolmax = max_solid_cells_per_inner_column(grid.number_of_node_columns)
     (nsol, last_col) = count_solid_cells_per_inner_column(grid)
     eroded_cells = nsolmax[1:last_col+1] - nsol[1:last_col+1]
-    ero_duration = tau * np.arange(2, last_col + 1)
-    #ero_rate_per_col = delta * eroded_cells / ero_duration
-    return eroded_cells  # temporary, for test
-    #return np.mean(ero_rate_per_col, ero_rate_per_col)
-    #TODO: WE SHOULD NOT BE INCLUDING COLUMNS WHERE THE FAULT TRACE LIES ABOVE
-    #THE TOP OF (INNER) COLUMN.
+    eroded_cells += ((np.arange(len(eroded_cells)) % 2) * 0.5
+                     * (eroded_cells / nsolmax[1:last_col+1]))
+    ero_duration = tau * np.arange(2, len(eroded_cells) + 2)
+    ero_rate_per_col = delta * eroded_cells / ero_duration
+    return (np.mean(ero_rate_per_col), ero_rate_per_col)
 
 
 def main(run_dir, results_basename):

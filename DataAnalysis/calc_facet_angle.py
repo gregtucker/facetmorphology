@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+    #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 """
 Created on Wed Aug  8 09:12:18 2018
@@ -21,7 +21,7 @@ def get_profile_and_soil_thickness(grid, node_state):
     --------
     >>> from landlab import HexModelGrid
     >>> import numpy as np
-    >>> hg = HexModelGrid(4, 6, orientation='vert', shape='rect')
+    >>> hg = HexModelGrid(4, 6, orientation='vert', node_layout='rect')
     >>> ns = hg.add_zeros('node', 'node_state', dtype=int)
     >>> ns[:18] = np.array([8, 8, 8, 8, 8, 8, 0, 7, 8, 0, 7, 8, 0, 0, 7, 0, 0, 7])
     >>> x, z, h = get_profile_and_soil_thickness(hg, ns)
