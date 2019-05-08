@@ -12,6 +12,8 @@ import datetime
 import numpy as np
 
 
+ROOT3 = np.sqrt(3.0)
+
 
 # FUNCTIONS
 
@@ -169,14 +171,41 @@ def count_solid_cells_per_inner_column(grid):
     >>> ns[19] = 1
     >>> ns[22] = 1
     >>> ns[24] = 1
-    >>> (nsol, last_col) = count_solid_cells_per_inner_column(grid)
+    >>> nsol = count_solid_cells_per_inner_column(grid)  # 5x5, 60 degrees
     >>> list(nsol)
-    [1, 3, 3]
-    >>> last_col
-    1
+    [2]
+    >>> grid = HexModelGrid(shape=(8, 7), node_layout='rect',
+    ...                     orientation='vert')
+    >>> ns = grid.add_zeros('node', 'node_state', dtype=np.int)
+    >>> ns[:7] = 8
+    >>> count_solid_cells_per_inner_column(grid)  # 8x7, 0 degrees
+    array([1, 1, 1, 1, 1])
+    >>> ns[:7] = 1
+    >>> ns[8:11] = 1
+    >>> ns[12:14] = 1
+    >>> ns[16:18] = 1
+    >>> ns[20] = 1
+    >>> ns[24] = 1
+    >>> count_solid_cells_per_inner_column(grid)  # 8x7, 30 degrees
+    array([1, 2, 2, 3, 3])
+    >>> ns[11] = 1
+    >>> ns[15] = 1
+    >>> ns[19] = 1
+    >>> ns[22:24] = 1
+    >>> ns[26:28] = 1
+    >>> ns[30:32] = 1
+    >>> ns[33:35] = 1
+    >>> ns[37:39] = 1
+    >>> ns[41] = 1
+    >>> ns[44:46] = 1
+    >>> ns[48] = 1
+    >>> ns[52] = 1
+    >>> ns[55] = 1
+    >>> count_solid_cells_per_inner_column(grid)  # 8x7, 60 degrees
+    array([2, 4, 5])
     """
     ns = grid.at_node['node_state']
-    num_solid = np.zeros(grid.number_of_node_columns - 2, dtype=np.int)
+    num_solid = np.ones(grid.number_of_node_columns - 2, dtype=np.int)
     last_col_with_air = 0
     for n in range(grid.number_of_nodes):
         if not grid.node_is_boundary(n):
@@ -185,18 +214,18 @@ def count_solid_cells_per_inner_column(grid):
                 num_solid[c-1] += 1
             elif c > last_col_with_air:
                 last_col_with_air = c
-    return (num_solid, last_col_with_air)
+    return num_solid[:last_col_with_air]
 
 
-def max_solid_cells_per_inner_column(num_cols):
-    """Return number of solid cells in each column if there were no erosion.
-    
-    Examples
-    --------
-    >>> list(max_solid_cells_per_inner_column(7))
-    [1.0, 3.0, 4.0, 6.0, 7.0]
-    """
-    return np.ceil(0.5 + 1.5 * np.arange(1, num_cols - 1)) - 1
+#def max_solid_cells_per_inner_column(num_cols):
+#    """Return number of solid cells in each column if there were no erosion.
+#    
+#    Examples
+#    --------
+#    >>> list(max_solid_cells_per_inner_column(7))
+#    [1.0, 3.0, 4.0, 6.0, 7.0]
+#    """
+#    return np.ceil(0.5 + 1.5 * np.arange(1, num_cols - 1)) - 1
 
 
 def calc_ero_rate_from_topo(grid, delta, tau):
@@ -223,8 +252,6 @@ def calc_ero_rate_from_topo(grid, delta, tau):
     ...                     orientation='vert')
     >>> ns = grid.add_zeros('node', 'node_state', dtype=np.int)
     >>> (ero_mean, ero_col) = calc_ero_rate_from_topo(grid, 1.0, 100.0)
-    >>> int(1000 * ero_mean)
-    15
     >>> ns[:7] = 1
     >>> ns[8:11] = 1
     >>> ns[12:14] = 1
@@ -232,8 +259,7 @@ def calc_ero_rate_from_topo(grid, delta, tau):
     >>> ns[20] = 1
     >>> ns[24] = 1
     >>> (ero_mean, ero_col) = calc_ero_rate_from_topo(grid, 1.0, 100.0)
-    >>> ero_mean
-    0.01
+    >>> ero_col
     >>> ns[11] = 1
     >>> ns[15] = 1
     >>> ns[19] = 1
@@ -248,17 +274,24 @@ def calc_ero_rate_from_topo(grid, delta, tau):
     >>> ns[52] = 1
     >>> ns[55] = 1
     >>> (ero_mean, ero_col) = calc_ero_rate_from_topo(grid, 1.0, 100.0)
+    >>> ero_col
     >>> ero_mean
     0.0
     """
-    #TODO: WHY DOESN'T THE 30 DEG CASE WORK?
-    nsolmax = max_solid_cells_per_inner_column(grid.number_of_node_columns)
-    (nsol, last_col) = count_solid_cells_per_inner_column(grid)
-    eroded_cells = nsolmax[1:last_col+1] - nsol[1:last_col+1]
-    eroded_cells += ((np.arange(len(eroded_cells)) % 2) * 0.5
-                     * (eroded_cells / nsolmax[1:last_col+1]))
-    ero_duration = tau * np.arange(2, len(eroded_cells) + 2)
-    ero_rate_per_col = delta * eroded_cells / ero_duration
+    #TODO: REMOVE COL 1 FROM CONSIDERATION; FINALIZE ABOVE TESTS
+    nsol = count_solid_cells_per_inner_column(grid)
+    c = np.arange(1, len(nsol) + 1)  # column numbers
+    x = 0.5 * ROOT3 * c
+    height = nsol - 1.0 / (1.0 + (c % 2))
+    height[nsol < 2] = 0.0
+    sliprate = ROOT3 * delta / tau
+    ero_rate_per_col = 0.5 * sliprate * (ROOT3 - height / x)
+
+#    eroded_cells = nsolmax[1:last_col+1] - nsol[1:last_col+1]
+#    eroded_cells += ((np.arange(len(eroded_cells)) % 2) * 0.5
+#                     * (eroded_cells / nsolmax[1:last_col+1]))
+#    ero_duration = tau * np.arange(2, len(eroded_cells) + 2)
+#    return (sliprate, height / x)
     return (np.mean(ero_rate_per_col), ero_rate_per_col)
 
 
