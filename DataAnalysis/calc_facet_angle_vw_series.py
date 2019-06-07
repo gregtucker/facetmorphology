@@ -13,9 +13,42 @@ import numpy as np
 
 
 ROOT3 = np.sqrt(3.0)
+DELTA = 0.5
 
 
 # FUNCTIONS
+
+def calc_fractional_soil_cover(grid):
+    """Calculate and return fractional soil versus rock cover."""
+    num_soil_air_faces = 0.0
+    num_rock_air_faces = 0.0
+
+    node_state = grid.at_node['node_state']
+
+    for link in range(grid.number_of_links):
+        tail = grid.node_at_link_tail[link]
+        head = grid.node_at_link_head[link]
+        if node_state[tail] == 0:  # if tail is air, see if head is rock/sed
+            if node_state[head] == 7:
+                num_soil_air_faces += 1
+            elif node_state[head] == 8:
+                num_rock_air_faces += 1
+        elif node_state[head] == 0:  # if head is air, see if tail is rock/sed
+            if node_state[tail] == 7:
+                num_soil_air_faces += 1
+            elif node_state[tail] == 8:
+                num_rock_air_faces += 1
+
+    total_surf_faces = num_soil_air_faces + num_rock_air_faces
+    frac_rock = num_rock_air_faces / total_surf_faces
+    frac_soil = num_soil_air_faces / total_surf_faces
+    print('Total number of surface faces: ' + str(total_surf_faces))
+    print('Number of soil-air faces: ' + str(num_soil_air_faces))
+    print('Number of rock-air faces: ' + str(num_rock_air_faces))
+    print('Percent rock-air faces: ' + str(100.0 * frac_rock))
+    print('Percent soil-air faces: ' + str(100.0 * frac_soil))
+    return frac_soil
+
 
 def get_profile_and_soil_thickness(grid, node_state):
     """Calculate and return profiles of elevation and soil thickness.
@@ -283,12 +316,12 @@ def main(run_dir, results_basename):
     results_file.write('Run name,Slip interval,'
                        + 'Weathering rate parameter,Slope angle,'
                        + 'Slope gradient,Intercept,'
-                       + 'Height of right column,'
-                       + 'Footwall upper bound length ratio\n')
+                       + 'Average erosion rate'
+                       + 'Fractional soil cover\n')
 
     # RUN
     for d in os.listdir(run_dir):
-    
+
         # Assume if it starts with 'tau' it's a folder containing a run
         if d[0:3] == 'tau':
             
@@ -303,21 +336,22 @@ def main(run_dir, results_basename):
             S = np.abs(polyparams[0])
             dip_angle = np.arctan(S)*180./np.pi
             
-            # Get the relative length of the footwall's contact with the
-            # upper boundary
-            fw_len = calc_length_of_footwall_at_upper_boundary(g)
-            len_ratio = fw_len / np.amax(g.x_of_node)
-
             # Figure out the weathering rate and uplift interval from run name
             f = d.find('w')
             tau = 10.0 ** (0.1 * float(d[f-2:f]))
             ww = 10.0 ** -(0.1 * float(d[f+2:]))
     
+            # Calculate erosion rate
+            (ero_mean, ero_col) = calc_ero_rate_from_topo(g, DELTA, tau)
+
+            # Calculate fractional soil cover thickness
+            frac_soil = calc_fractional_soil_cover(g)
+
             # Write the results to our file
             line_to_write = (d + ',' + str(tau) + ',' + str(ww)
                               + ',' + str(dip_angle) + ',' + str(S) + ','
-                             + str(polyparams[1]) + ',' + str(z[-2]) + ','
-                             + str(len_ratio))
+                             + str(polyparams[1]) + ',' + str(ero_mean) + ','
+                             + str(frac_soil))
             print(line_to_write)
             results_file.write(line_to_write + '\n')
 
