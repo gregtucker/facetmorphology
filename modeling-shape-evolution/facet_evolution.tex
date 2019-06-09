@@ -302,9 +302,6 @@ To represent normal-fault slip, a $60^\circ$-dipping fault crosses the grid latt
 
 Production of moveable regolith from bedrock is represented by a transition from a rock-air pair to a regolith-air pair (Figure~\ref{fig:cellstates}, a to b). The rate constant $w$ [1/T] represents the average transition frequency. %Given a cell width of $\delta$, the expected bare-bedrock weathering rate is $2\delta w$ (the factor of two reflects the fact that for a planar surface, the hex lattice geometry exposes an average of two faces per cell).
 
-%Ok, at this point we have a conundrum. It turns out that the actual dissolution rate on a flat surface asymptotes to around 3.6 delta s, for reasons that remain obscure to me but presumably relate to surface roughness. So, the earlier "fit" was apparently a coincidence. One option is to calculate the erosion rate using my erosion function, and compare with facet angle. But of course they should correlate, since it amounts to basically the same method (or variation on same). I could nonetheless do this and back out the effective factor. But why is the factor actually a bit less than 2? Did I make a mistake in the analysis?
-
-
 In order to explore the case of fully weathering-limited slopes, we introduce a second weathering rule to represent dissolution. When this rule is invoked, rock-air cell pairs transition to air-air pairs---representing rock dissolution---with an average rate $s$ [1/T]. %The expected bare rock dissolution rate [L/T] is therefore $\delta s$.
 
 We assume that regolith transport can occur by two means: (1) displacement by a disturbance event and subsequent motion, or (2) spontaneous gravitational failure, when the local angle of repose is exceeded. The model's disturbance rule represents the action of processes like animal burrowing, frost heave, tree throw, and other mechanisms that tend to displace regolith outward from the surface. The disturbance transition rule applies to locations where a resting regolith cell lies adjacent to an air cell. When the transition occurs, the regolith and air trade places, and the regolith state switches from resting to moving in the direction from which disturbance originated (Figure~\ref{fig:cellstates}, b to c). The disturbance rate parameter, $d$ [1/T], represents the average disturbance frequency, and functionally equates to the disturbance frequency parameter $N_a$ in the probabilistic theory of soil creep developed by \citet{furbish2009statistical}. \citet{tucker2018lattice} show that for relatively gentle slopes, the disturbance rate relates directly to the commonly used soil transport efficiency factor (``hillslope diffusivity''), $D_s$, according to
@@ -344,11 +341,11 @@ The expected facet dip angle is
 \end{equation}
 where $\theta$ and $\alpha$ are both in radians. Figure~\ref{fig:dissruns} presents simulated profiles for facets eroded by dissolution, under different values of dimensionless weathering rate $S'$. The figure also compares narrow and wide facets. The simulated facets show a linear relation between angle and dissolution rate, consistent with the analytical expectation (equation~\ref{eq:predangle}) (Figure~\ref{fig:angdiss}). As expected, there is no apparent relation between slope angle and the width of the cross section.
 
-%\begin{figure}[ht!]
-%\centerline{\includegraphics{Figures/dissolution_model_profiles.pdf}}
-%\caption{Simulated facet cross-sectional profiles formed under a combination of fault slip and dissolution. Dark gray indicates rock, and light blue is air. Labels show the dimensionless effective dissolution efficiency, $S'$ (equation~\ref{eq:nddissefficiency}), and the predicted and simulated average facet slope angle, $\theta$. Line shows facet profile predicted by equation (\ref{eq:dissangle}).}
-%\label{fig:dissruns}
-%\end{figure}
+\begin{figure}[ht!]
+\centerline{\includegraphics{Figures/dissolution_model_profiles.pdf}}
+\caption{Simulated facet cross-sectional profiles formed under a combination of fault slip and dissolution. Dark gray indicates rock, and light blue is air. Labels show the dimensionless effective dissolution efficiency, $S'$ (equation~\ref{eq:nddissefficiency}), and the predicted and simulated average facet slope angle, $\theta$. Line shows facet profile predicted by equation (\ref{eq:dissangle}).}
+\label{fig:dissruns}
+\end{figure}
 
 \begin{figure}[ht!]
 \centerline{\includegraphics{Figures/angle_vs_dissolution.pdf}}
