@@ -298,7 +298,7 @@ Each hexagonal model cell represents one of three types of material: air, rock, 
 
 \citet{tucker2018lattice} present the rule set for the Grain Hill model. Here, we briefly summarize these rules, and describe two additions to the version they present: the implementation of periodic slip on a $60^\circ$ dipping normal-fault, and the addition of a rule that represents dissolution of bedrock.
 
-To represent normal-fault slip, a $60^\circ$-dipping fault crosses the grid lattice at a user-specified location (Figure~\ref{fig:domainschematic}, bottom). Cells in the footwall block are shifted up and to the right on a 60$^\circ$ angle, at a distance of $\sqrt{3}$ lattice units per time interval $\tau$. The slip rate is therefore $V = \sqrt{3}\delta \tau$, where $\delta$ [L] is the width of a grid cell.
+To represent normal-fault slip, a $60^\circ$-dipping fault crosses the grid lattice at a user-specified location (Figure~\ref{fig:domainschematic}, bottom). Cells in the footwall block are shifted up and to the right on a 60$^\circ$ angle, at a distance of $\sqrt{3}$ lattice units per time interval $\tau_s$. We will also make use of a related quantity, $\tau= \tau_s / \sqrt{3}$, which is the average time interval between unit slip events. The slip rate is therefore $V = \delta / \tau$, where $\delta$ [L] is the width of a grid cell.
 
 Production of moveable regolith from bedrock is represented by a transition from a rock-air pair to a regolith-air pair (Figure~\ref{fig:cellstates}, a to b). The rate constant $w$ [1/T] represents the average transition frequency. %Given a cell width of $\delta$, the expected bare-bedrock weathering rate is $2\delta w$ (the factor of two reflects the fact that for a planar surface, the hex lattice geometry exposes an average of two faces per cell).
 
@@ -355,16 +355,16 @@ where $\theta$ and $\alpha$ are both in radians. Figure~\ref{fig:dissruns} prese
 
 \subsection{Facets with Regolith}
 
-We consider the case in which rock weathers iso-volumetrically to regolith, with regolith motion driven by stochastic disturbance events (Figure~\ref{fig:cellstates}). Two dimensionless parameters determine the model's behavior:
+We next consider the case in which rock weathers iso-volumetrically to regolith, with regolith motion driven by stochastic disturbance events (Figure~\ref{fig:cellstates}). Two dimensionless parameters determine the model's behavior:
 \begin{eqnarray*}
 \textrm{Dimensionless weathering rate:} & w' = w\tau \\
 \textrm{Dimensionless disturbance rate:} & d' = d\tau.
 \end{eqnarray*}
-Figures~\ref{fig:dwprofiles} and \ref{fig:angw} illustrate the role of these two parameters for the case of a facet of fixed width. The model shows three behavior regimes. When $w'\gg d'$, gradient depends on the disturbance frequency regardless of weathering rate. In this the transport-limited regime, solutions with $d'\le 1$ represent angle-of-repose slopes (recall that the model has a 30$^\circ$ effective angle of repose). Although these angle-of-repose solutions are not inevitable, they occupy a large part of the model's parameter space and could be thought of as a sort of attractor state. When $w' < 1$, slope angle depends primarily on $w'$. But even in this weathering-controlled regime, disturbance rate continues to have some influence, except in the extreme dissolute-limited case when there is no regolith to move (Figure~\ref{fig:angw}, solid curve and circles). 
+Figures~\ref{fig:dwprofiles} and \ref{fig:angw} illustrate the role of these two parameters for the case of a facet of fixed width. The model shows three behavior regimes. When $w'\gg d'$, gradient depends on the disturbance frequency regardless of weathering rate. In this transport-limited regime, solutions with $d'\le 1$ produce angle-of-repose slopes (recall that the model has a 30$^\circ$ effective angle of repose) (Figure~\ref{fig:dwprofiles}, upper left). Although these angle-of-repose solutions are not inevitable, they occupy a large part of the model's parameter space and could be thought of as an attractor state. When $w' < 1$, slope angle depends primarily on $w'$. But even in this weathering-controlled regime, disturbance rate continues to have some influence, except in the extreme dissolute-limited case when there is no regolith to move (Figure~\ref{fig:angw}, solid curve and circles). 
 
-Facet shape depends on both $w'$ and $d'$. With sufficiently effective weathering and transport, represented by the parameter space $w'>1$ and $d'>1$, the model produces somewhat convex-upward facets (Figure~\ref{fig:dwprofiles}, upper right). If either of these parameters is less than unity, the model generates planar facets.
+Facet shape depends on both $w'$ and $d'$. With sufficiently effective weathering and transport, represented by the parameter space $w'>1$ and $d'>1$, the model produces convex-upward facets (Figure~\ref{fig:dwprofiles}, upper right). If either of these parameters is less than unity, the model generates planar or nearly planar facets.
 
-Facet length has very little influence on slope angle (compare Figure~\ref{fig:angw} left and right), except in the case of $d'\gg 1$ (star and triangle symbols in Figure~\ref{fig:angw}). Here, longer slopes are systematically steeper.
+Facet length has little influence on slope angle (compare Figure~\ref{fig:angw} left and right), except in the case of $d'\gg 1$ (star and triangle symbols in Figure~\ref{fig:angw}). Here, longer slopes are systematically steeper.
 
 \begin{figure}[ht!]
 \centerline{\includegraphics{Figures/four_by_four_profiles_in_d-w_space.pdf}}
@@ -402,7 +402,7 @@ We explore the formation of colluvial wedges with a series of model runs similar
 
 Up to now we have assumed that the baselevel elevation remains fixed to the rocks in the hangingwall. In real extensional systems, however, this will rarely be the case. With the hangingwall rock as a reference frame, baselevel may rise as the hangingwall basin undergoes aggradation: a common situation in extensional systems. On the other hand, if the entire extensional system rises relative to an external baselevel such as eustatic sea level, the hangingwall blocks may themselves be incised, such that the local baselevel within a given hangingwall falls. Hangingwall incision has occurred, for example, in parts of the central Apennines extensional province in Italy \citep[e.g.,][]{dagostino2003interactions}.
 
-To explore how baselevel rise might influence facet evolution, we performed a series of models runs identical to those in the previous section, but with the addition of a numerical ``sill'' along the left boundary (Figure~\ref{fig:baselevelrise}). The sill's elevation rises through time at 25\% of the vertical speed of footwall motion. The experiment is imperfect, as there is no easy way to keep the facet length constant. Nonetheless, the results illustrate potential impacts of hangingwall aggradation. In the reference frame of hangingwall bedrock, the fault trace rises and migrates away from the basin. Aggradation reduces the gradient of both the bedrock facet and the colluvial wedge. When $w'$ and facet length are sufficiently low, the flux of sediment from the eroding facet becomes insufficient to fill the accommodation space created by baselevel rise, and sediment is trapped (Figure~\ref{fig:baselevelrise}). In these cases, sediment from an external source, such as an axial river or a nearby fan fed by a transverse stream, might be expected to fill the extra accommodation space, creating a sharp contact between the facet and the (relatively flat) basin floor, with the fault trace essentially at the slope base, as is sometimes observed (for example, Figure~\ref{fig:facets}f).
+To explore how baselevel rise might influence facet evolution, we performed a series of models runs identical to those in the previous section, but with the addition of a numerical ``sill'' along the left boundary (Figure~\ref{fig:baselevelrise}). The sill's elevation rises through time at 25\% of the vertical speed of footwall motion. The experiment is imperfect, as there is no easy way to keep the facet length constant. Nonetheless, the results illustrate potential impacts of hangingwall aggradation. In the reference frame of hangingwall bedrock, the fault trace rises and migrates away from the basin. Aggradation reduces the gradient of both the bedrock facet and the colluvial wedge. When $w'$ and facet length are sufficiently low, the create of accommodation space creation outpaces the sediment flux of sediment from the eroding facet, and all the incoming sediment is trapped (Figure~\ref{fig:baselevelrise}). In these cases, sediment from an external source, such as an axial river or a nearby fan fed by a transverse stream, might be expected to fill the extra accommodation space, creating a sharp contact between the facet and the (relatively flat) basin floor, with the fault trace essentially at the slope base, as is sometimes observed (for example, Figure~\ref{fig:facets}f).
 
 \begin{figure}[ht!]
 \centerline{\includegraphics{Figures/four_by_four_profiles_baselevel_rise.pdf}}
@@ -410,23 +410,24 @@ To explore how baselevel rise might influence facet evolution, we performed a se
 \label{fig:baselevelrise}
 \end{figure}
 
+\subsection{Relation between facet angle and erosion rate}
+
+To examine the predicted relationship between erosion rate and facet dip angle, we define a dimensionless slope-averaged erosion rate as $E_v' = E_v / \delta d$. The denominator represents the maximum rate of regolith removal by disturbance: it is the rate one would obtain if each disturbance triggers a ravel event that transports the disturbed material to the base of the slope. In other words, $E_v' = 1$ can be thought of as representing ``perfect'' nonlocal transport \citep[e.g.,][]{tucker2010trouble,doane2018nonlocal}. Cases with $E_v'<1$ arise either when some displaced regolith remains on the slope (indicating local, diffusive-like transport), or when the regolith cover is incomplete. Cases with $E_v'>1$ indicate some degree of direct gravitational failure of regolith material.
+
+The predicted relationship between facet dip angle and $E_v'$ is shown in Figure~\ref{fig:eroslope}.  The figure depicts model runs with varying weathering efficiency ($w$) and slip frequency ($\tau$). Dotted lines indicate runs with the same weathering efficiency; for each set of points of constant $w$, slip interval increases from left to right, representing the increase in facet dip with slip rate. Color shading indicates the proportional regolith cover at the end of each run. The results illustrate two regimes of behavior. Regolith-mantled facets (light-colored points) show a strongly nonlinear relationship between angle and erosion rate, with a rapid acceleration in erosion rate near the model's 30$^\circ$ angle of repose (light-colored points in Figure~\ref{fig:eroslope}). Rocky facets (dark-colored points), on the other hand, have a roughly log-linear relationship (dark points in Figure~\ref{fig:eroslope}).
+
 \begin{figure}[ht!]
 \centerline{\includegraphics{Figures/ero_rate_vs_slope_angle.pdf}}
-\caption{TO ADD}
+\caption{Relationship between erosion rate and steady-state facet angle, generated from a set of model runs with varying $w$ and $\tau$, and fixed $d$. Each dashed line connects a series of runs with identical $w$ but varying $\tau$.}
 \label{fig:eroslope}
 \end{figure}
 
+The first regime represents transport-limited behavior. As slope angle increases, the model predicts a nonlinear increase in average erosion and transport rates, and a transition in morphology from convex-upward to planar \citep{tucker2018lattice}. For fully regolith-mantled slopes (yellow points), the model's 30$^\circ$ effective angle of repose imposes an upper limit. This behavior is consistent both with the Andrews-Bucknam transport law \citep{andrews1987fitting,roering1999evidence} and with experimental and field data on soil-mantled hillslopes \citep{roering2001hillslope,binnie2007tectonic,roering2008well,ouimet2009beyond,stock2009spatial,dibiase2012hillslope}.
+
+The second regime represents weathering-limited behavior. In this regime, for a given weathering efficiency ($w$), the ...
 
 
-
-TODO: 
-
-- UPDATE FACET SCHEMATIC TO USE SIN AND SLOPE-NORMAL
-
-- UPDATE CALCS AND FIGURES OF DISS-LIM 
-
-- UPDATE PLOT OF W-D WITH CORRECT DISS-LIM CURVE
-
+ANNOTATE PLOT WITH LABELS SHOWING HIGH AND LOW VALUES OF W. HIGHER VALUES ASSOCIATED WITH HIGHER EROSION RATES. PERHAPS ADD SECOND VERSION COLORED BY RATIO OF ACTUAL EROSION RATE TO THEORETICAL MAXIMUM (BUT CORRECT THE RATIO FOR COSINE).
 
 ...then step back and consider whether we've covered it all up to here
 
@@ -513,8 +514,8 @@ note that being on average below angrep doesn't mean lower part isn't angrep. de
 %plot of facet dip angle in d' and w' space (from talk, showing family of curves)
 %
 %C. (optional) what if rock or soil can dissolve, a la Italian carbonates? (dissolution rule)
-
-D. (optional) baselevel effects - what happens when either you have a basal stream cutting down or a hangingwall valley aggrading? This would require having a modification that would add or remove rock cells along the left edge
+%
+%D. (optional) baselevel effects - what happens when either you have a basal stream cutting down or a hangingwall valley aggrading? This would require having a modification that would add or remove rock cells along the left edge
 
 E. what sets the effective E vs S relation? refer back to T et al., 2011, noting restrictive assumption of slope-independent erosion rate
 
@@ -578,12 +579,6 @@ o bar graph of regolith thickness and percent cover on a bunch of facets
 
 o illustration with time-varying w and/or d
 
-
-
-\begin{equation}
-\alpha - \theta = E / V
-\label{eq:angdif}
-\end{equation}
 
 
 
@@ -692,7 +687,7 @@ NSF normal faults, landlab, csdms, ...
 
 %\bibliography{gt_library.bib}
 
-\begin{thebibliography}{1}
+\begin{thebibliography}{38}
 \providecommand{\natexlab}[1]{#1}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
@@ -703,6 +698,18 @@ NSF normal faults, landlab, csdms, ...
 Anderson, T.~C. (1977), {Compound faceted spurs and recurrent movement in the
   Wasatch Fault zone, north central Utah}, Ph.D. thesis, Brigham Young
   University.
+
+\bibitem[{\textit{Andrews and Bucknam}(1987)}]{andrews1987fitting}
+Andrews, D., and R.~C. Bucknam (1987), Fitting degradation of shoreline scarps
+  by a nonlinear diffusion model, \textit{Journal of Geophysical Research},
+  \textit{92}(B12), 12,857--12,867.
+
+\bibitem[{\textit{Binnie et~al.}(2007)\textit{Binnie, Phillips, Summerfield,
+  and Fifield}}]{binnie2007tectonic}
+Binnie, S.~A., W.~M. Phillips, M.~A. Summerfield, and L.~K. Fifield (2007),
+  Tectonic uplift, threshold hillslopes, and denudation rates in a developing
+  mountain range, \textit{Geology}, \textit{35}(8), 743--746,
+  \doi{10.1130/G23641A.1}.
 
 \bibitem[{\textit{Blackwelder}(1928)}]{blackwelder1928recognition}
 Blackwelder, E. (1928), The recognition of fault scarps, \textit{The Journal of
@@ -728,6 +735,13 @@ Bubeck, A., M.~Wilkinson, G.~P. Roberts, P.~Cowie, K.~McCaffrey, R.~Phillips,
   penetrating radar and terrestrial laser scanning, \textit{Geomorphology},
   \textit{237}, 38--51.
 
+\bibitem[{\textit{D'Agostino et~al.}(2003)\textit{D'Agostino, Jackson, Dramis,
+  and Funiciello}}]{dagostino2003interactions}
+D'Agostino, N., J.~Jackson, F.~Dramis, and R.~Funiciello (2003), {Interactions
+  between mantle upwelling, drainage evolution and active normal faulting: an
+  example from the central Apennines (Italy)}, \textit{Geophysical Journal
+  International}, \textit{147}(2), 475--497.
+
 \bibitem[{\textit{Davis}(1903)}]{davis1903mountain}
 Davis, W.~M. (1903), The mountain ranges of the great basin, \textit{Harvard
   University Museum of Comparative Zoology Bulletin}, \textit{40}(3), 129--177.
@@ -744,6 +758,19 @@ Densmore, A.~L., M.~A. Ellis, and R.~S. Anderson (1998), Landsliding and the
 \bibitem[{\textit{DePolo and Anderson}(2000)}]{depolo2000estimating}
 DePolo, C., and J.~Anderson (2000), Estimating the slip rates of normal faults
   in the great basin, usa, \textit{Basin Research}, \textit{12}(3-4), 227--240.
+
+\bibitem[{\textit{DiBiase et~al.}(2012)\textit{DiBiase, Heimsath, and
+  Whipple}}]{dibiase2012hillslope}
+DiBiase, R., A.~Heimsath, and K.~Whipple (2012), Hillslope response to tectonic
+  forcing in threshold landscapes, \textit{Earth Surface Processes and
+  Landforms}.
+
+\bibitem[{\textit{Doane et~al.}(2018)\textit{Doane, Furbish, Roering, Schumer,
+  and Morgan}}]{doane2018nonlocal}
+Doane, T.~H., D.~J. Furbish, J.~J. Roering, R.~Schumer, and D.~J. Morgan
+  (2018), Nonlocal sediment transport on steep lateral moraines, eastern sierra
+  nevada, california, usa, \textit{Journal of Geophysical Research: Earth
+  Surface}, \textit{123}(1), 187--208.
 
 \bibitem[{\textit{Ellis et~al.}(1999)\textit{Ellis, Densmore, and
   Anderson}}]{ellis1999development}
@@ -781,6 +808,13 @@ Menges, C. (1990), {Soils and geomorphic evolution of bedrock facets on a
   tectonically active mountain front, western Sangre de Cristo Mountains, New
   Mexico}, \textit{Geomorphology}, \textit{3}(3-4), 301--332.
 
+\bibitem[{\textit{Ouimet et~al.}(2009)\textit{Ouimet, Whipple, and
+  Granger}}]{ouimet2009beyond}
+Ouimet, W.~B., K.~X. Whipple, and D.~E. Granger (2009), Beyond threshold
+  hillslopes: Channel adjustment to base-level fall in tectonically active
+  mountain ranges, \textit{Geology}, \textit{37}(7), 579--582,
+  \doi{10.1130/G30013A.1}.
+
 \bibitem[{\textit{Pack}(1926)}]{pack1926new}
 Pack, F.~J. (1926), {New discoveries relating to the Wasatch fault},
   \textit{American Journal of Science}, \textit{11}(65), 399--410.
@@ -792,9 +826,34 @@ Petit, C., Y.~Gunnell, N.~Gonga-Saholiariliva, B.~Meyer, and J.~Seguinot
   modeling}, \textit{Journal of Geophysical Research---Solid Earth},
   \textit{{114}}, \doi{{10.1029/2008JB005955}}.
 
+\bibitem[{\textit{Roering}(2008)}]{roering2008well}
+Roering, J. (2008), {How well can hillslope evolution models ``explain''
+  topography? Simulating soil transport and production with high-resolution
+  topographic data}, \textit{Geological Society of America Bulletin},
+  \textit{120}(9-10), 1248--1262.
+
+\bibitem[{\textit{Roering et~al.}({1999})\textit{Roering, Kirchner, and
+  Dietrich}}]{roering1999evidence}
+Roering, J., J.~Kirchner, and W.~Dietrich ({1999}), {Evidence for nonlinear,
+  diffusive sediment transport on hillslopes and implications for landscape
+  morphology}, \textit{{WATER RESOURCES RESEARCH}}, \textit{{35}}({3}),
+  {853--870}.
+
+\bibitem[{\textit{Roering et~al.}({2001})\textit{Roering, Kirchner, Sklar, and
+  Dietrich}}]{roering2001hillslope}
+Roering, J., J.~Kirchner, L.~Sklar, and W.~Dietrich ({2001}), {Hillslope
+  evolution by nonlinear creep and landsliding: An experimental study},
+  \textit{{GEOLOGY}}, \textit{{29}}({2}), {143--146}.
+
 \bibitem[{\textit{Schneider}(1925)}]{schneider1925discussion}
 Schneider, H. (1925), {A discussion of certain geologic features of the Wasatch
   Mountains}, \textit{The Journal of Geology}, \textit{33}(1), 28--48.
+
+\bibitem[{\textit{Stock et~al.}(2009)\textit{Stock, Frankel, Ehlers, Schaller,
+  Briggs, and Finkel}}]{stock2009spatial}
+Stock, G., K.~Frankel, T.~Ehlers, M.~Schaller, S.~Briggs, and R.~Finkel (2009),
+  Spatial and temporal variations in denudation of the wasatch mountains, utah,
+  usa, \textit{Lithosphere}, \textit{1}(1), 34--40.
 
 \bibitem[{\textit{Strak et~al.}(2011)\textit{Strak, Dominguez, Petit, Meyer,
   and Loget}}]{strak2011interaction}
@@ -807,6 +866,11 @@ Strak, V., S.~Dominguez, C.~Petit, B.~Meyer, and N.~Loget (2011), Interaction
 Struble, W.~T., S.~W. McCoy, D.~E.~J. Hobley, G.~E. Tucker, and L.~C. Gregory
   (in review), {Mountain-Front Facet Gradient Encodes Long-Term Slip Rate Along
   the Wasatch Normal Fault, USA}, \textit{TBD}.
+
+\bibitem[{\textit{Tucker and Bradley}(2010)}]{tucker2010trouble}
+Tucker, G., and D.~Bradley (2010), {Trouble with diffusion: Reassessing
+  hillslope erosion laws with a particle-based model}, \textit{J. Geophys.
+  Res}, \textit{115}.
 
 \bibitem[{\textit{Tucker et~al.}(2011)\textit{Tucker, McCoy, Whittaker,
   Roberts, Lancaster, and Phillips}}]{tucker2011geomorphic}
