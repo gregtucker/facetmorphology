@@ -1,0 +1,67 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{topcapt}
+\usepackage{booktabs}
+
+%SetFonts
+
+%SetFonts
+
+
+%\title{Brief Article}
+%\author{The Author}
+%\date{}							% Activate to display a given date or no date
+
+\begin{document}
+%\maketitle
+%\section{}
+%\subsection{}
+
+\pagestyle{empty}  % turn of page numbering
+\renewcommand{\thetable}{S\arabic{table}} % add "S" to table number
+
+% Requires the booktabs if the memoir class is not being used
+\begin{table}[htbp]
+   \centering
+   \topcaption{List of mathematical symbols.} % requires the topcapt package
+   \begin{tabular}{clc} % Column formatting, @{} suppresses leading/trailing space
+      \toprule
+      Symbol    & Description & Dimensions \\
+      \midrule
+      $a$ & surface-roughness coefficient & - \\
+      $d$ & disturbance transition frequency & T$^{-1}$ \\
+      $d'$ & dimensionless disturbance frequency $=d\tau$ & - \\
+      $D$ & characteristic disturbance rate $=\delta d$ & LT$^{-1}$ \\
+      $D_s$ & soil-creep transport coefficient & L$^2$T$^{-1}$ \\
+      $E_n$ & slope-normal erosion rate & LT$^{-1}$ \\
+      $E_v$ & vertical erosion rate & LT$^{-1}$ \\
+      $E'_v$ & dimensionless vertical erosion rate $=E_v/\delta d$ & - \\
+      $q_s$ & sediment flux per unit width & L$^2$T$^{-1}$ \\
+      $s$ & dissolution transition frequency & T$^{-1}$ \\
+      $S'$ & dimensionless dissolution efficiency & - \\
+      $S$ & slope gradient & - \\
+      $S_c$ & critical slope gradient & - \\
+      $V$ & fault slip rate $=\delta / \tau$ & LT$^{-1}$ \\
+      $w$ & weathering transition frequency & T$^{-1}$ \\
+      $w'$ & dimensionless weathering efficiency $=w\tau$ & - \\
+      $W$ & characteristic weathering rate $=\delta w$ & LT$^{-1}$ \\
+      $W_s$ & characteristic dissolution rate $=\delta s$ & LT$^{-1}$ \\
+      $\alpha$      & fault dip angle & - \\
+      $\beta$          & $\alpha - \theta$ &  - \\
+      $\delta$ & cell width & L \\
+      $\theta$ & facet dip angle & - \\
+      $\tau$ & unit slip interval $=\tau_s / \sqrt{3}$ & T \\
+      $\tau_s$ & lattice slip interval & T \\
+      \bottomrule
+   \end{tabular}
+   \label{tab:symbols}
+\end{table}
+
+
+\end{document}  
